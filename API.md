@@ -19,7 +19,7 @@ The alt/hover text is optional, but I might change my mind about that (alt text 
 Images are shown/hidden using tags, more-or-less following conventions established by Inky web export.
 
 ```
-IM_PREFIX: images/
+# IM_PREFIX: images/
 ```
 Set a prefix to be added automatically to all image filename arguments.
 Useful for grouping images by scene.
