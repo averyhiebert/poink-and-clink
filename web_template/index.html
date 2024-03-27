@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>My Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- using new.css by default -->
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
+    <!-- some additional minor custom css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="subtitle">
+    
+    <div id="canvas">
+        <!-- Images will appear here. Example: -->
+
+        <!--
+        <img src="images/bg.png" draggable="false" usemap="#clickmap">
+        <img src="images/table.png" draggable="false" usemap="#clickmap">
+        <img src="images/plant.gif" draggable="false" usemap="#clickmap">
+        -->
+    </div>
+    <map name="clickmap" id="clickmap">
+        <!-- Clickable areas will appear here. Example: -->
+        <!--  
+        <area shape="rect" coords="0,0,100,100" alt="top left area" onclick="alert('test');" href="javascript:;" title="top left area">
+        -->
+    </map>
+
+
+    <!-- story content goes here: -->
+    <section id="story"></section>
+    
+
+    <script src="lib/imageMapResizer.min.js"></script>
+    <script src="ink.js"></script>
+    <script src="story.js"></script>
+    <script src="settings.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

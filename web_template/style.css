@@ -1,0 +1,36 @@
+/* I'm trying to keep styling to a minumum here.  Ideally you should be ably yo apply any "classless css framework" */
+
+.choice {
+    cursor: pointer;
+}
+
+#canvas {
+  width: 60%; /* TODO better default */
+  margin: auto;
+  aspect-ratio: 1;
+  position: relative; /* so that children can use absolute */
+  background: gold; /* for dev/testing purposes*/
+
+  /* make contents not selectable */
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* draggable='false' might make these redundant, but might as well be safe: */
+  user-drag: none;
+  -webkit-user-drag: none;
+}
+
+#canvas img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    
+    /* Turn off antialiasing for nice pixel art. */
+    /* TODO Make this configurable? */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+}
