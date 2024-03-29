@@ -1,4 +1,4 @@
-# Ink API
+# Poink-and-Clink API
 
 
 ## Clickable choices
@@ -12,7 +12,9 @@ A "clickable" choice can be created as follows:
 
 This creates a rectangular clickable area from 0,0 to 100,100 with the alt text and hover text "kitchen door."
 
-The alt/hover text is optional, but I might change my mind about that (alt text might be important for accessibility).
+The alt/hover text is optional, but I might change my mind about that (alt text is important for accessibility).
+
+Note: no spaces between coordinates, at least one space before the hover text.
 
 ## Showing/hiding images
 
