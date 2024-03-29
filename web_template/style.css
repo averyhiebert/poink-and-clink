@@ -1,4 +1,4 @@
-/* I'm trying to keep styling to a minumum here.  Ideally you should be ably yo apply any "classless css framework" */
+/* I'm trying to keep styling to a minumum here.  Ideally you should be ably to apply any "classless css framework" */
 
 .choice {
     cursor: pointer;
@@ -33,4 +33,17 @@
     image-rendering: -o-crisp-edges;
     image-rendering: -webkit-optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
+}
+
+/* screenreader-only class (visible to screenreaders but not visual users),
+as recommended here:
+https://webaim.org/techniques/css/invisiblecontent/#techniques
+*/
+.sr-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
 }

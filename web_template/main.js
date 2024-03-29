@@ -48,7 +48,7 @@ function printLine() {
             add_image(val);
         } else if (property == "IM_HIDE") {
             remove_image(val);
-        } else if (property == "NEW_SCENE") {
+        } else if (property == "SCENE") {
             reset_image(val);
         } else if (property == "IM_REPLACE") {
             // TODO better error checking
@@ -56,6 +56,8 @@ function printLine() {
             replace_image(path1,path2);
         } else if (property == "CLASS"){
             customClasses.push(val);
+        } else if (property == "TEXTMODE"){
+            customClasses.push("sr-only");
         } else if (property == "AUDIO") {
             // TODO Implement
         } else if (property == "AUDIOLOOP") {
@@ -168,6 +170,7 @@ function add_image(path) {
         img.setAttribute("draggable",false);
         img.setAttribute("usemap","#clickmap");
         img.setAttribute("src",path);
+        img.setAttribute("alt","");
         canvas.appendChild(img);
     }
 }

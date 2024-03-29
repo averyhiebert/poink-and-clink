@@ -1,0 +1,3 @@
+This file exists to work around the fact that the file picker in Aseprite only lets you select files, not entire directories.
+
+If you are not using the Aseprite export script you can ignore this file.

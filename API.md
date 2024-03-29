@@ -16,19 +16,19 @@ The alt/hover text is optional, but I might change my mind about that (alt text 
 
 ## Showing/hiding images
 
-Images are shown/hidden using tags, more-or-less following conventions established by Inky web export.
+Images are shown/hidden using tags, more-or-less following conventions established by Inky web export.  All of the standard web image formats are supported (png, jpeg, gif).
 
 ```
-# IM_PREFIX: images/
+# SCENE: image.png
 ```
-Set a prefix to be added automatically to all image filename arguments.
-Useful for grouping images by scene.
-TODO: Implement this!
+Set the current contents of the screen to the specified image.  Completely replaces any images that may have been displayed previously.
+
+Useful to call once when changing to a new scene.
 
 ```
 # IM_SHOW: image.png
 ```
-Adds the specified image.png into the scene *on top* of any existing images.
+Adds the specified image into the scene *on top* of any existing images.
 
 ```
 # IM_HIDE: image.png
@@ -42,12 +42,12 @@ Replaces image1 with image2, preserving order of all images.
 If image1 does not already exist, image2 is simply added to the scene.
 
 ```
-# NEW_SCENE: image.png
+# IM_PREFIX: images/
 ```
-Removes *all existing* images and replaces them with image.png.
-Useful when changing to a new scene.
+Set a prefix to be added automatically to all image filename arguments.
+Useful for grouping images by scene.
+TODO: Implement this!
 
-TODO: support for named layers, making "replacing" slightly better
 
 ## Other tags
 
@@ -64,6 +64,12 @@ The `AUDIOLOOP` tag is available, but functions slightly differently from Inky, 
 ```
 # AUDIOLOOP: file.mp3 // TODO Implement
 ```
+
+For accessibility and text-based prototyping in Inky, you can use the `TEXTMODE` tag for text that will not be displayed to the player in the final export (but will remain accessible to screenreaders).
+```
+Textual description of image # TEXTMODE
+```
+
 
 ## Global configuration options
 
