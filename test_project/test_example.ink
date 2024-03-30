@@ -1,6 +1,8 @@
 #TITLE: Test Project
 
 #SCENE: bg.png
+#AUDIOLOOP: audio/rhapsody_in_blue.mp3
+
 Should be seeing: white background.
 
 * A choice.

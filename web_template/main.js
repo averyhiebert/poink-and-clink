@@ -63,9 +63,36 @@ function printLine() {
         } else if (property == "TEXTMODE"){
             customClasses.push("sr-only");
         } else if (property == "AUDIO") {
-            // TODO Implement
+            /* Note: copied from Inky export */
+            let src = val;
+            if('audio' in this) {
+              this.audio.pause();
+              this.audio.removeAttribute('src');
+              this.audio.load();
+            }
+            this.audio = new Audio(val);
+            this.audio.play();
         } else if (property == "AUDIOLOOP") {
-            // TODO Implement
+            /* Note: copied from Inky export */
+            let do_update = true;
+            let src = val 
+            if('audioLoop' in this) {
+              // If the same audio is already playing, do not change anything.
+              old_src = this.audioLoop.getAttribute("src");
+              if (this.audioLoop.getAttribute("src") == src){
+                  do_update = false;
+                  
+              } else {
+                  this.audioLoop.pause();
+                  this.audioLoop.removeAttribute('src');
+                  this.audioLoop.load();
+              }
+            }
+            if (do_update){
+                this.audioLoop = new Audio(src);
+                this.audioLoop.play();
+                this.audioLoop.loop = true;
+            }
         }
     } // for each tag
 
@@ -112,7 +139,7 @@ function addChoice(choice) {
         area.setAttribute("coords",clickable.coords);
         if (clickable.text) {
             // TODO title attribute should be optional (global config)
-            area.setAttribute("title",clickable.text); // TODO Optional?
+            area.setAttribute("title",clickable.text);
             // TODO alt should be mandatory (accessibility)
             area.setAttribute("alt",clickable.text);
         }
