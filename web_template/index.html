@@ -13,26 +13,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="subtitle" onclick="click_anywhere_callback()">
+<body class="subtitle" onclick="click_anywhere_callback()" onkeypress="handle_keypress(event)">
     
     <div id="canvas" onmousemove="clear_hovertext()">
         <!-- Images will appear here. Example: -->
-
         <!--
         <img src="images/table.png" alt="" draggable="false" usemap="#clickmap">
         -->
         <span aria-hidden="true" id="hovertext" hidden>Hovertext goes here</span>
     </div>
+
+    <!-- story content goes here: -->
+    <section id="story"></section>
+    
+    <!-- clickmap is at bottom because this makes more sense for screenreaders, probably (although I think Firefox will move it to where the image is anyways). -->
     <map name="clickmap" id="clickmap">
         <!-- Clickable areas will appear here. Example: -->
         <!--  
         <area shape="rect" coords="0,0,100,100" alt="top left area" onclick="alert('test');" href="javascript:;" title="top left area">
         -->
     </map>
-
-
-    <!-- story content goes here: -->
-    <section id="story"></section>
     
 
     <script src="lib/imageMapResizer.min.js"></script>

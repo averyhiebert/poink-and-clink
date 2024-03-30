@@ -33,8 +33,6 @@ Before release:
     - get hovertext from metadata
     - less messy handling of filenames/directory structure
  - scaling the main canvas
- - "click anywhere else" options
- - better hover text (stylable, instant)
  - package CSS with the application
  - basic tutorial
 

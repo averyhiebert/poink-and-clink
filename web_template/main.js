@@ -4,6 +4,8 @@
 
 var story = new inkjs.Story(storyContent);
 
+// Some globals needed for certain functionality
+var click_anywhere_callback = function(){};
 var image_prefix = "images/"
 
 function main(storyContent) {
@@ -114,9 +116,11 @@ function addChoice(choice) {
     
     // Add the given choice to the UI
     var choose_this = function() {
+        console.log("Chose a choice");
         // Clear existing choices and clickables
         removeAll(".choice");
         removeAll("#clickmap area");
+        set_click_anywhere(function(){});
         story.ChooseChoiceIndex(choice.index);
         if (global_settings.CLEAR_AFTER_CHOICES) {
             clear_text();
@@ -129,7 +133,7 @@ function addChoice(choice) {
     }
     
     var clickable = parse_clickable_choice(choice);
-    if (clickable) {
+    if (clickable && clickable.coords) {
         // TODO Also suppress choice text when it prints?
         //  (not high priority, can just use [ ] in Ink)
 
@@ -148,6 +152,12 @@ function addChoice(choice) {
 
         var map = document.getElementById("clickmap");
         map.appendChild(area);
+    } else if (clickable) {
+        // This is a "click anywhere" choice
+        setTimeout(function(){
+            set_click_anywhere(choose_this);
+        },100); // timeout to prevent the current click from triggering it.
+        // (it's hacky but probably fairly robust)
     } else {
         // Regular text-based choice
 
@@ -242,10 +252,18 @@ function parse_clickable_choice(choice) {
     //  return {coords, text}
     result = /(\d+,\d+,\d+,\d+) (.*)/.exec(choice.text)
     if (result) {
-        return {coords: result[1], text: result[2]}
-    } else {
-        return null;
+        // Is a clickable choice with rectangular coordinates
+        return {coords: result[1], text: result[2]};
     }
+
+    result = /,,, (.*)/.exec(choice.text)
+    if (result) {
+        // Is a "click anywhere" choice.
+        return {coords: null, text: result[1]};
+    }
+    
+    // Otherwise, not a clickable choice
+    return null;
 }
 
 function set_hovertext(text) {
@@ -260,13 +278,18 @@ function clear_hovertext() {
     hovertext.setAttribute("hidden","true");
 }
 
-var click_anywhere_callback = function(){};
 
 function set_click_anywhere(cb) {
     click_anywhere_callback = cb;
     // TODO: set pointer settings?
 }
 
+function handle_keypress(e) {
+    if (e.key == " "){
+        // Space triggers "click anywhere to continue" events
+        click_anywhere_callback();
+    }
+}
 
 
 // Utils/Small Functions ==================================================
