@@ -18,6 +18,7 @@ Here are some things you *can't* do easily in Poink:
  - 3rd-person characters walking around in an environment (unless you animate it yourself frame-by-frame).
  - Complex inventory logic, i.e. combining items and "using" arbitrary items on arbitrary objects (unless you write it yourself in Ink).
  - Always-present UI elements, i.e. pause menu or "show inventory" button (unless you write it yourself in HTML/CSS/JS)
+    - (There are *ok-ish* workarounds for this in pure Ink, depending on what you're trying to accomplish)
 
 But if you don't want any of these features, Poink may be for you! And it should still be relatively simple to modify the JavaScript to add custom functionality, as you could with an Inky web export.
 
@@ -32,13 +33,13 @@ Before release:
     - export coordinates
     - get hovertext from metadata
     - less messy handling of filenames/directory structure
+ - basic tutorial
 
 ## Roadmap
 
 Things I hope to add eventually:
  - project template (with Makefile for easy build + better Aseprite workflow)
  - tutorials
-    - basic tutorial
     - "basic" + aseprite tutorial
     - project template tutorial
  - demo game project
@@ -48,6 +49,6 @@ Things I hope to add eventually:
  - Improved accessibility / screenreader support
     - fix image map to only be used on one image at a time
     - actually test in Orca & resolve any issues identified
- - optional .ink library with helpful additional functionality.
  - better error checking / more informative error messages
     - (minimum: wrap the "tag processing" code in a try/catch and skip problematic lines, with error message in console.)
+ - optional .ink library with helpful additional functionality?
