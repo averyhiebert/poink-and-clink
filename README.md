@@ -32,7 +32,6 @@ Before release:
     - export coordinates
     - get hovertext from metadata
     - less messy handling of filenames/directory structure
- - scaling the main canvas
 
 ## Roadmap
 

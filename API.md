@@ -78,14 +78,25 @@ Textual description of image # TEXTMODE
 Some global settings can be configured using global tags (tags at the top of the ink file)
 
 ```
+# CANVAS_SHAPE: 200 200
+```
+**MANDATORY!** Informs the canvas what size the images are going to be (in pixels).  If you don't set this correctly then the playing area will not display correctly.
+
+```
+# CANVAS_WIDTH: 60%
+```
+**MANDATORY!** Sets the width of the "canvas" area (supports any format recognized by CSS).  Setting it to 0 (default) will entirely hide the canvas.
+
+```
 # TITLE: Your Title Here
 ```
 Sets the title of the web page.
 
+
 ```
-# CLEAR_AFTER_CHOICES: false
+# CLEAR_AFTER_CHOICES: true
 ```
-If set to true, the text will be cleared every time a choice is picked.
+If set to true, the text will be cleared every time a choice is picked. True by default, as this makes sense for point & click-type games in most cases, although you may sometimes prefer traditional ink behaviour.
 
 ```
 # REPLACE_UNDERSCORES: false

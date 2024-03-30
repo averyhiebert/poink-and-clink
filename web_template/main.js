@@ -188,6 +188,15 @@ function parse_global_tag(tag) {
         case "TITLE":
             document.title = val;
             break;
+        case "CANVAS_WIDTH":
+            var canvas = document.getElementById("canvas");
+            canvas.style.width = val;
+        case "CANVAS_SHAPE":
+            var canvas = document.getElementById("canvas");
+            let [x,y] = val.split(/\s+/);
+            console.log("ratio is:");
+            console.log(x/y);
+            canvas.style["aspect-ratio"] = x/y;
         case "CLEAR_AFTER_CHOICES":
         case "REPLACE_UNDERSCORES":
         case "SKIP_CHOICE_TEXT":

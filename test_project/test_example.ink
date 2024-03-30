@@ -1,8 +1,8 @@
 #TITLE: Test Project
+#CANVAS_WIDTH: 60%
+#CANVAS_SHAPE: 200 200
 
 #SCENE: bg.png
-#AUDIOLOOP: audio/rhapsody_in_blue.mp3
-
 Should be seeing: white background.
 
 * A choice.

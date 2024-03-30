@@ -12,11 +12,11 @@ That being said, this file contains some CSS that serves an important purpose (m
 }
 
 #canvas {
-  width: 60%; /* TODO better default */
+  width: 0; /* Override with a percentage in Ink */
   margin: auto;
   aspect-ratio: 1;
   position: relative; /* so that children can use absolute */
-  background: gold; /* for dev/testing purposes*/
+  background: #303030; /* for dev/testing purposes*/
 
   /* make contents not selectable */
   -moz-user-select: none;
