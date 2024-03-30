@@ -1,6 +1,13 @@
-/* I'm trying to keep styling to a minumum here.  Ideally you should be ably to apply any "classless css framework" */
+/* I'm trying to keep styling to a minumum here.  Ideally you should be ably to apply any "classless css framework."
+
+That being said, this file contains some CSS that serves an important purpose (mostly positioning-related).  Should interfere minimally with any other user-defined CSS.*/
+
 
 .choice {
+    cursor: pointer;
+}
+
+#clickmap area{
     cursor: pointer;
 }
 
@@ -33,6 +40,23 @@
     image-rendering: -o-crisp-edges;
     image-rendering: -webkit-optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
+}
+
+#hovertext {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1;
+    /* Normally I would leave styling to user, but in this case I think an unstyled default would simply be unusable on a variety of backgrounds.*/
+    background-color: black;
+    color: white;
+    padding-top: 0.05rem;
+    padding-bottom: 0.05rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-radius:0.2rem;
+    color: white;
 }
 
 /* screenreader-only class (visible to screenreaders but not visual users),

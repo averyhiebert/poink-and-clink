@@ -13,14 +13,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="subtitle">
+<body class="subtitle" onclick="click_anywhere_callback()">
     
-    <div id="canvas">
+    <div id="canvas" onmousemove="clear_hovertext()">
         <!-- Images will appear here. Example: -->
 
         <!--
         <img src="images/table.png" alt="" draggable="false" usemap="#clickmap">
         -->
+        <span aria-hidden="true" id="hovertext" hidden>Hovertext goes here</span>
     </div>
     <map name="clickmap" id="clickmap">
         <!-- Clickable areas will appear here. Example: -->

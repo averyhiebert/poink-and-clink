@@ -134,14 +134,15 @@ function addChoice(choice) {
         //  (not high priority, can just use [ ] in Ink)
 
         var area = document.createElement("area");
-        area.setAttribute("href","javascript:;");
+        //area.setAttribute("href","javascript:;");
         area.setAttribute("shape","rect");
         area.setAttribute("coords",clickable.coords);
         if (clickable.text) {
-            // TODO title attribute should be optional (global config)
-            area.setAttribute("title",clickable.text);
             // TODO alt should be mandatory (accessibility)
             area.setAttribute("alt",clickable.text);
+            area.onmousemove = function() {
+                set_hovertext(clickable.text);
+            }
         }
         area.onclick = choose_this;
 
@@ -246,6 +247,26 @@ function parse_clickable_choice(choice) {
         return null;
     }
 }
+
+function set_hovertext(text) {
+    var hovertext = document.getElementById("hovertext");
+    hovertext.innerHTML = text;
+    hovertext.removeAttribute("hidden");
+}
+
+function clear_hovertext() {
+    var hovertext = document.getElementById("hovertext");
+    hovertext.innerHTML = "";
+    hovertext.setAttribute("hidden","true");
+}
+
+var click_anywhere_callback = function(){};
+
+function set_click_anywhere(cb) {
+    click_anywhere_callback = cb;
+    // TODO: set pointer settings?
+}
+
 
 
 // Utils/Small Functions ==================================================

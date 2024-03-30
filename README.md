@@ -36,7 +36,6 @@ Before release:
  - "click anywhere else" options
  - better hover text (stylable, instant)
  - package CSS with the application
- - implement AUDIO and AUDIOLOOP ?
  - basic tutorial
 
 ## Roadmap

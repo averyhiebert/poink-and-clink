@@ -9,8 +9,9 @@ Should be seeing: white background.
 * 0,0,100,100 A clickable choice
 -
 #IM_SHOW: table.png
-Should now see: background with table
-
+Should now see: background with table.
+Click anywhere to continue...
+* [,,, Click to continue...]
 * Ok
 -
 #IM_REPLACE: bg.png plant.gif
