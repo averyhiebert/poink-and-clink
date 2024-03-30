@@ -33,14 +33,13 @@ Before release:
     - get hovertext from metadata
     - less messy handling of filenames/directory structure
  - scaling the main canvas
- - package CSS with the application
- - basic tutorial
 
 ## Roadmap
 
 Things I hope to add eventually:
  - project template (with Makefile for easy build + better Aseprite workflow)
  - tutorials
+    - basic tutorial
     - "basic" + aseprite tutorial
     - project template tutorial
  - demo game project

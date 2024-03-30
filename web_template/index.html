@@ -5,12 +5,13 @@
     <title>My Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- using new.css by default -->
-    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <!-- This CSS is "mandatory," change it at your own risk -->
+    <link rel="stylesheet" href="mandatory.css">
 
-    <!-- some additional minor custom css -->
-    <link rel="stylesheet" href="style.css">
+    <!-- This CSS is totally optional, used for style purposes only. -->
+    <!-- (We use new.css as a reasonable default, but it can be safely overwritten, or you can apply a theme as described in the new.css documentation) -->
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="lib/new.css">
 </head>
 
 <body class="subtitle" onclick="click_anywhere_callback()" onkeypress="handle_keypress(event)">
@@ -20,7 +21,7 @@
         <!--
         <img src="images/table.png" alt="" draggable="false" usemap="#clickmap">
         -->
-        <span aria-hidden="true" id="hovertext" hidden>Hovertext goes here</span>
+        <span aria-hidden="true" id="hovertext" hidden>Hovertext</span>
     </div>
 
     <!-- story content goes here: -->
