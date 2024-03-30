@@ -32,7 +32,6 @@ Before release:
     - export coordinates
     - get hovertext from metadata
     - less messy handling of filenames/directory structure
- - image prefix tag
  - scaling the main canvas
  - "click anywhere else" options
  - better hover text (stylable, instant)
@@ -55,3 +54,5 @@ Things I hope to add eventually:
     - fix image map to only be used on one image at a time
     - actually test in Orca & resolve any issues identified
  - optional .ink library with helpful additional functionality.
+ - better error checking / more informative error messages
+    - (minimum: wrap the "tag processing" code in a try/catch and skip problematic lines, with error message in console.)

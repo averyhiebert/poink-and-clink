@@ -4,6 +4,8 @@
 
 var story = new inkjs.Story(storyContent);
 
+var image_prefix = "images/"
+
 function main(storyContent) {
     let globalTags = story.globalTags;
     if (story.globalTags){
@@ -45,15 +47,17 @@ function printLine() {
                 return;
             }
         } else if (property == "IM_SHOW") {
-            add_image(val);
+            add_image(image_prefix + val);
         } else if (property == "IM_HIDE") {
-            remove_image(val);
+            remove_image(image_prefix + val);
         } else if (property == "SCENE") {
-            reset_image(val);
+            reset_image(image_prefix + val);
         } else if (property == "IM_REPLACE") {
             // TODO better error checking
             let [path1, path2] = val.split(/\s+/);
-            replace_image(path1,path2);
+            replace_image(image_prefix + path1, image_prefix + path2);
+        } else if (property == "IM_PREFIX") {
+            image_prefix = val;
         } else if (property == "CLASS"){
             customClasses.push(val);
         } else if (property == "TEXTMODE"){
