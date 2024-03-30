@@ -118,7 +118,8 @@ function addChoice(choice) {
     var choose_this = function() {
         console.log("Chose a choice");
         // Clear existing choices and clickables
-        removeAll(".choice");
+        //removeAll(".choice");
+        removeAll("#story button");
         removeAll("#clickmap area");
         set_click_anywhere(function(){});
         story.ChooseChoiceIndex(choice.index);
@@ -138,7 +139,12 @@ function addChoice(choice) {
         //  (not high priority, can just use [ ] in Ink)
 
         var area = document.createElement("area");
-        //area.setAttribute("href","javascript:;");
+        // href is unfortunately necessary
+        //  (or else it won't be clickable via tab/enter)
+        // I have not found a way to get rid of the browser status bar
+        //  while still maintaining tab accessibility.
+        // TODO make this configurable?
+        area.setAttribute("href","javascript:;");
         area.setAttribute("shape","rect");
         area.setAttribute("coords",clickable.coords);
         if (clickable.text) {
@@ -148,7 +154,11 @@ function addChoice(choice) {
                 set_hovertext(clickable.text);
             }
         }
-        area.onclick = choose_this;
+        //area.onclick = choose_this;
+        area.addEventListener("click",function(event) {
+            event.preventDefault(); // Don't follow <a> link
+            choose_this();
+        });
 
         var map = document.getElementById("clickmap");
         map.appendChild(area);
@@ -164,13 +174,14 @@ function addChoice(choice) {
         var storySection = document.getElementById("story");
         var choiceParagraphElement = document.createElement('p');
         choiceParagraphElement.classList.add("choice");
-        choiceParagraphElement.innerHTML = `<a>${format_text(text)}</a>`
+        choiceParagraphElement.innerHTML = `<button>${format_text(text)}</button>`
         storySection.appendChild(choiceParagraphElement);
 
         // Make the choice clickable
-        var choiceAnchorEl = choiceParagraphElement.querySelectorAll("a")[0]
-        choiceAnchorEl.addEventListener("click",function(event) {
-            event.preventDefault(); // Don't follow <a> link
+        // Note: we use button, not link, for better semantic HTML
+        var buttonEl = choiceParagraphElement.querySelectorAll("button")[0]
+        buttonEl.addEventListener("click",function(event) {
+            //event.preventDefault(); // Don't follow <a> link
             choose_this();
         });
     }
@@ -354,4 +365,5 @@ function str_to_bool(str) {
 // Finally, run main
 main(storyContent);    
 
+// Using 3rd-party library to fix scale of image map areas to match rescaled images:
 imageMapResize();

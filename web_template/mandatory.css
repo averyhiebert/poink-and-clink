@@ -3,10 +3,6 @@
 That being said, this file contains some CSS that serves an important purpose (mostly positioning-related).  Should interfere minimally with any other user-defined CSS.*/
 
 
-.choice {
-    cursor: pointer;
-}
-
 #clickmap area{
     cursor: pointer;
 }
