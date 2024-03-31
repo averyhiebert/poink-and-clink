@@ -7,9 +7,9 @@ An export script for Aseprite exists, to streamline the development process furt
 ## Design Philosophy
 
 Poink is constructed around the following design pillars:
- - **Drawing and Writing:** Developing a point & click game should involve drawing art and writing a branching narrative, and *ideally nothing else*.  Spend all your time in a drawing program (I have Aseprite in particular in mind) or in Inky, with as little additional programming/configuring as possible.
- - **Fallback to text:** Poink is supposed to support a development process involving prototyping a game in pure text (i.e. playable in Inky), and then progressively adding graphics, while still maintaining a game that conceivably could be played in text-only format.  Done properly, this should *hopefully* result in games that are screenreader accessible, and that can potentially be ported to another game engine without much additional effort.
- - **Small, quick games:** It should be convenient to create small games quickly using Poink (at least once I get a good project template with build automation set up). Think jam games, webcomic-like games, old-school flash games.  For highly complex and feature-rich games you might want to go somewhere else.
+ - **Drawing and Writing:** Developing a point & click game should involve drawing art and writing a branching narrative, and *ideally nothing else*.  Spend all your time in a drawing program (I have Aseprite in particular in mind) or in Inky, with as little external programming/configuration as possible.
+ - **Fully playable as text:** Poink is supposed to support a development process involving prototyping a game in pure text (i.e. playable in Inky), and then progressively adding graphics without removing the full playability of the text content.  Done properly, this should *hopefully* result in games that are screenreader accessible, and that can still be ported to another game engine without much additional effort.  (Also good for game jams: if you start to realize that your graphical ambitions were a bit over-scoped you can still settle for a more text-based but still presentable version of the game.)
+ - **Small, quick games:** It should be convenient to create small games quickly using Poink (at least once I get a good project template with build automation set up). Think jam games, old-school flash games, prototypes, interactive web comics.  Think "somewhere in the range between Flickgame and Binksi" (inclusive).   For highly complex and feature-rich games you might want to go somewhere else.
 
 
 ## Limitations
@@ -29,10 +29,6 @@ TODO add documentation.
 
 ## TODO
 Before release:
- - finish lua
-    - export coordinates
-    - get hovertext from metadata
-    - less messy handling of filenames/directory structure
  - basic tutorial
 
 ## Roadmap

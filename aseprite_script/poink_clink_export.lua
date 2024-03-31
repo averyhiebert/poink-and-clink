@@ -1,149 +1,146 @@
--- NOTE: This script is slightly modified from "better_export.lua" by Colin Lienard, which was originall released under the MIT license. The following block comment is the description found in the original script.  Subsequent block comments were added by me, Avery Hiebert.
 --[[
+Export images and slice coordinate data for Poink-and-Clink game template.
 
-Description:
-This script will flatten the groups of layers and then export a sprite sheet.
-This is useful if you work with several groups of layers but you want each group to be a single layer when exporting.
-You can choose to export only the visible layers or all of them (they will be automatically made visible).
+All exported data will be placed in a directory named "aseprite-export" alongside the aseprite file being exported, according to the following directory structure:
 
-GitHub:
-https://github.com/ColinLienard/aseprite-scripts
+filename.aseprite
+aseprite-export/
+    images/
+        filename.layer1.tag1.gif
+        filename.layer1.tag2.gif
+        ... etc.
+    ink/
+        filename.ink
 
-]]--
+IMAGE DATA NOTES:
 
---[[ The script was originally distributed under the following license:
------------------------------------------------------------------------------
+The tag named "default" will be omitted from the generated filename
+    (i.e. filename.layer1.gif will be the "default" animation of layer1).
+Layer groups will be exported collectively as a single layer.
+Try not to include spaces in layer or tag names.
 
-MIT License
+SLICE DATA NOTES:
 
-Copyright (c) 2022 Colin Lienard
+A slice named "example" spanning from 0,0 to 10,10 with metadata "hovertext" will be exported in ink as:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-----------------------------------------------------------------------
-
-I (Avery Hiebert) license this derivative script under the same license.
-
-Modifications from the original script are as follows.
- - make all layers fully opaque before exporting
- - keep group name as name of new flattened layer
- - export JSON as well (assume same base filename as the png)
- - changes to export format options
+VAR C_example = "0,0,10,10 hovertext"
 
 ]]--
 
 local sprite = app.activeSprite
 
-
--- AVERY
+-- (returns list of what the visibility was originally, so we can restore).
 local function hideAllLayers(layers)
+  visibility_record = {}
   for index, layer in ipairs(layers) do
+    visibility_record[index] = layer.isVisible
     layer.isVisible = false
-    if layer.isGroup then
-      hideAllLayers(layer.layers)
-    end
+  end
+  return visibility_record
+end
+
+local function resetVisibility(layers,settings)
+  for index, layer in ipairs(layers) do
+    layer.isVisible = visibility_record[index]
   end
 end
 
--- Flatten groups of layers if visible
-local function flattenGroups()
-  for index, layer in ipairs(sprite.layers) do
-    if layer.isGroup and layer.isVisible then
-      -- MODIFIED to preserve group name
-      local i = layer.stackIndex
-      local group_name = layer.name
-      app.range.layers = { layer }
-      app.command.FlattenLayers()
-      sprite.layers[i].name = group_name
-    end
-  end
-end
-
--- AVERY
+-- TODO Replace with builtin functions, for OS independence
 function dirFromFile(file)
     a,b = string.find(file,".*/")
     return string.sub(file,a,b)
 end
 
--- AVERY: export a gif of the given layer and tag
-local function exportLayerTag(path,layer,tag)
-    local dir_name
-    if path:sub(-4) == ".txt" then
-        i, j = string.find(path,".*/")
-        dir_name = dirFromFile(path)
-    else
-        -- TODO Less hacky way to specify directory
-        print("Filename specified should be a .txt, not ".. file)
-        return
+-- export a gif of the given layer and tag
+local function exportLayerTag(image_dir, scene, layer, tag)
+    local filename = scene .. "." .. layer.name .. "." .. tag.name .. ".gif"
+    if tag.name == "default" then
+        -- omit "tag" part of filename
+        filename = scene .. "." .. layer.name .. ".gif"
     end
+    local full_path = app.fs.joinPath(image_dir, filename)
     
-    --Make export dir if it doesn't already exist
-    -- TODO Set name correctly
-    -- TODO do this earlier, not in this function
-    os.execute("mkdir " .. dir_name .. "/test_export")
-
-    --Export gif of given layer and tag to this dir.
-    local new_filename = dir_name .. "/test_export/" .. layer.name .. "." .. tag.name .. ".gif"
-
-	app.transaction(function() -- Store sprite modifications
-        hideAllLayers(sprite.layers)
-        layer.isVisible = true
-    end)
-
+    -- Note: transaction/undo didn't seem to work for layer visibility,
+    ---  I guess because changing layer visibility is not a "command"?
+    local prev_visibility = hideAllLayers(sprite.layers)
+    layer.isVisible = true
     app.command.SaveFileCopyAs{
         ui=false,
-        filename=new_filename,
+        filename=full_path,
         tag=tag.name,
     }
-    app.undo()
-end
-
--- AVERY
-local function exportAllTags(path)
-    local sprite = app.activeSprite
-    for i,tag in ipairs(sprite.tags) do
-        for i,layer in ipairs(sprite.layers) do
-            --TODO maybe check whether to export this tag for this layer
-            exportLayerTag(path,layer,tag)
-        end
-    end
+    resetVisibility(sprite.layers, prev_visibility)
 end
 
 -- TODO implement this
-local function exportSliceData(path) end
+local function exportInkData(filename, scene_title)
+    local ink_content = [[
+// Auto-generated by Poink-and-Clink exporter for Aseprite.
+// Do not modify this file - your changes will be overwritten when exporting!
 
--- Get the output file
-local dialog = Dialog()
-dialog:label{ id="label", text="Export to where?" }
---dialog:file{ id="file", open=false, save=true, filetypes={ "txt" }, focus=true }
-dialog:file{ id="file", open=false, save=true, focus=true }
-dialog:button{ id="ok", text="Export" }
-dialog:button{ id="cancel", text="Cancel", onclick = function() dialog:close() end }
-dialog:show()
+]]
+    for i, slice in ipairs(sprite.slices) do
+        local s = string.format("VAR %s = \"%d,%d,%d,%d %s\"\n",
+            "C_" .. slice.name:gsub(" ","_"),
+            slice.bounds.x,
+            slice.bounds.y,
+            slice.bounds.x + slice.bounds.width,
+            slice.bounds.y + slice.bounds.height,
+            slice.data
+        )
+        ink_content = ink_content .. s
+    end
 
--- Perform everything
-print(dialog.data.file)
-
-if dialog.data.ok and dialog.data.file then
-  app.transaction(function() -- Store sprite modifications
-    flattenGroups()
-  end)
-  exportAllTags(dialog.data.file)
-  app.undo() -- Undo sprite modifications
+    local file = io.open(filename,"w")
+    if file then
+        file:write(ink_content)
+    else
+        print("Error: unable to save file: " .. filename)
+    end
 end
+
+local function main()
+    -- Confirmation dialog 
+    local dialog = Dialog()
+    dialog:label{ id="label", text="Export poink-and-clink data?" }
+    dialog:button{ id="ok", text="Export" }
+    dialog:button{ id="cancel", text="Cancel", onclick = function() dialog:close() end }
+    dialog:show()
+
+    if not dialog.data.ok then
+        return
+    end
+    
+    -- Export details:
+    --  create "aseprite-export" dir in same directory as .aseprite file
+    --  within that, create "images" and "ink"
+    --  this should be the most practical setup, I think
+    local scene_title = app.fs.fileTitle(sprite.filename)
+    local file_dir = app.fs.filePath(sprite.filename)
+    local export_dir = app.fs.joinPath(file_dir,"aseprite-export")
+    local image_dir = app.fs.joinPath(export_dir,"images")
+    local ink_dir = app.fs.joinPath(export_dir,"ink")
+    
+    local result1 = app.fs.makeAllDirectories(image_dir)
+    local result2 = app.fs.makeAllDirectories(ink_dir)
+    if not (result1 and result2) then
+        print("Error creating directories")
+        return
+    end
+    
+    -- Export images
+    for i,tag in ipairs(sprite.tags) do
+        for i,layer in ipairs(sprite.layers) do
+            --TODO maybe extra checks to minimize unecessary exports
+            exportLayerTag(image_dir, scene_title, layer, tag)
+        end
+    end
+
+    -- Export ink
+    local ink_filename = app.fs.joinPath(ink_dir,scene_title .. ".ink")
+    exportInkData(ink_filename)
+
+    print("Export completed")
+end
+
+main()
