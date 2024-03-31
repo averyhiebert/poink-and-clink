@@ -38,13 +38,12 @@ Things I hope to add eventually:
  - tutorials
     - "basic" + aseprite tutorial
     - project template tutorial
- - demo game project
- - Some sort of "fullscreen" option (hopefully achievable with just CSS?)
+ - good alternate CSS for "fullscreen"/embeddable layout.
  - better support for custom JS without editing main.js
  - named image layers, for mild convenience
  - Improved accessibility / screenreader support
     - fix image map to only be used on one image at a time
     - actually test in Orca & resolve any issues identified
  - better error checking / more informative error messages
-    - (minimum: wrap the "tag processing" code in a try/catch and skip problematic lines, with error message in console.)
- - optional .ink library with helpful additional functionality?
+    - (at least wrapping the "tag processing" code in a try/catch and skipping problematic lines, with error message in console.)
+ - demo game

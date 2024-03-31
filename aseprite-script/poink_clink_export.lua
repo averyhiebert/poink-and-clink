@@ -27,6 +27,13 @@ VAR C_example = "0,0,10,10 hovertext"
 
 ]]--
 
+local SKIP_UI = false
+if app.params["SKIP_UI"] == "1" then
+    -- Lets us skip showing UI elements (would otherwise crash in batch mode)
+    -- To use, run aseprite with --script-param SKIP_UI
+    SKIP_UI = true
+end
+
 local sprite = app.activeSprite
 
 -- (returns list of what the visibility was originally, so we can restore).
@@ -101,14 +108,17 @@ end
 
 local function main()
     -- Confirmation dialog 
-    local dialog = Dialog()
-    dialog:label{ id="label", text="Export poink-and-clink data?" }
-    dialog:button{ id="ok", text="Export" }
-    dialog:button{ id="cancel", text="Cancel", onclick = function() dialog:close() end }
-    dialog:show()
 
-    if not dialog.data.ok then
-        return
+    if not SKIP_UI then
+        local dialog = Dialog()
+        dialog:label{ id="label", text="Export poink-and-clink data?" }
+        dialog:button{ id="ok", text="Export" }
+        dialog:button{ id="cancel", text="Cancel", onclick = function() dialog:close() end }
+        dialog:show()
+
+        if not dialog.data.ok then
+            return
+        end
     end
     
     -- Export details:
@@ -140,7 +150,9 @@ local function main()
     local ink_filename = app.fs.joinPath(ink_dir,scene_title .. ".ink")
     exportInkData(ink_filename)
 
-    print("Export completed")
+    if not SKIP_UI then
+        print("Export completed")
+    end
 end
 
 main()
