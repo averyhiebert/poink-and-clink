@@ -1,6 +1,6 @@
 # Poink-and-Clink: A point & click framework for Ink.
 
-Poink-and-Clink ("Poink" for short) is a drop-in replacement for the default web export template in Inky, adding support for simple point & click game functionality.  Perfect for *simple* first-person 2D point & click games, visual novels, or interactive fiction with occasional point & click elements.
+Poink-and-Clink ("Poink" for short) is a drop-in replacement for the default web export template in Inky, adding support for simple point & click game functionality.  Perfect for *simple* 2D point & click games.
 
 An export script for Aseprite exists, to streamline the development process further.
 

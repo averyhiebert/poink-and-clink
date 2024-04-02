@@ -1,0 +1,6 @@
+site_name: Poink-and-Clink Documentation
+nav:
+ - Home: index.md
+ - Tutorial: tutorial.md
+ - API Reference: API.md
+theme: readthedocs
