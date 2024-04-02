@@ -83,49 +83,49 @@ The following tags are supported as in Inky default export:
 # CLEAR
 # RESTART
 # CLASS: classname
-# AUDIO: file.mp3 // TODO Implement
+# TITLE: My Cool Game
+# AUDIO: file.mp3
+# AUDIOLOOP: file.mp3
 ```
 
-The `AUDIOLOOP` tag is available, but functions slightly differently from Inky, in that calling AUDIOLOOP with the name of a file that is already playing will not restart the loop.
-```
-# AUDIOLOOP: file.mp3 // TODO Implement
-```
+`AUDIOLOOP` functions slightly differently from Inky: specifying the name of a file that is already playing will not restart the loop.
 
 
 
-## Global configuration options
+## Global Configuration 
 
 Some global settings can be configured using global tags (tags at the top of the ink file)
+
+### CANVAS\_SHAPE and CANVAS\_WIDTH
+These settings are **MANDATORY** if you want to use the canvas.
 
 ```
 # CANVAS_SHAPE: 200 200
 ```
-**MANDATORY!** Informs the canvas what size the images are going to be (in pixels).  If you don't set this correctly then the playing area will not display correctly.
+Informs the canvas what size the images are going to be (in pixels).  If you don't set this correctly then the playing area will not display correctly.
 
 ```
 # CANVAS_WIDTH: 60%
 ```
-**MANDATORY!** Sets the width of the "canvas" area (supports any format recognized by CSS).  Setting it to 0 (default) will entirely hide the canvas.
+Sets the width of the "canvas" area (supports any format recognized by CSS).  Setting it to 0 (the default) will entirely hide the canvas.
 
-```
-# TITLE: Your Title Here
-```
-Sets the title of the web page.
+Percentages are relative to the width of the `body` of the document, which is *not* the total width of the window (when using the default styling).
 
-
+### CLEAR\_AFTER\_CHOICES
 ```
 # CLEAR_AFTER_CHOICES: true
 ```
 If set to true, the text will be cleared every time a choice is picked. True by default, as this makes sense for point & click-type games in most cases, although you may sometimes prefer traditional ink behaviour.
 
+### REPLACE\_UNDERSCORES
 ```
 # REPLACE_UNDERSCORES: false
 ```
 If set to true, all underscores in text produced by the Ink story will be replaced with spaces (useful if you want to be lazy and reuse variable names as display text.  I would normally not encourage this, but Ink in particular makes it annoying to set display text for some things, so I allow it.)
 
+### SKIP\_CHOICE\_TEXT
 ```
 # SKIP_CHOICE_TEXT: false
 ```
-If set to true, the first line of text after a choice is made will be skipped.  This basically lets you leave out the `[ ]`, *if* you're certain that you would be using it all the time anyways (likely useful for certain styles of adventure game).
-
+If set to true, the first line of text after a choice is made will be skipped.  This basically lets you leave out the `[ ]`, *if* you're certain that you would be using it all the time anyways (might save a small number of keystrokes, but to be honest it's probably not worth it).
 
