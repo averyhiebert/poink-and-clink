@@ -20,7 +20,7 @@ Towering pines obscure the night sky.
         GAME OVER.
         +++ [Restart]
             # RESTART
-            -> DONE
+            -> exterior
     ++ [No]
         Good idea.
         -> OK -> exterior

@@ -8,10 +8,11 @@
 # Make the example project.
 example: clean
 	cp -r web-template example-project/html
+	rm example-project/html/story.js
 	cd example-project && make
 	cd ..
 
-.PHONY: clean
+.PHONY: clean example
 
 clean:
 	# Remove data from web template (I leave story.js 'cause I'm lazy)

@@ -316,7 +316,7 @@ function handle_keypress(e) {
 
 function restart() {
     story.ResetState();
-    continueStory();
+    clear_text();
 }
 
 function clear_text() {
