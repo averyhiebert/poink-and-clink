@@ -1,5 +1,5 @@
 # Dependencies:
-#  inklecate must be added to your path (v1.1)
+#  inklecate must be added to your path (v1.1.1 or earlier)
 #  aseprite must be added to your path
 ASE := $(wildcard *.ase)
 ASE_EXPORT := $(patsubst %.ase,aseprite-export/%.exported,${ASE})
@@ -9,8 +9,7 @@ all: html
 html: html/images html/audio html/story.js
 
 html/story.js:
-	#inklecate -o story.json.temp main.ink
-	./inklecate_linux -o story.json.temp main.ink
+	inklecate -o story.json.temp main.ink
 	echo "var storyContent = " > html/story.js
 	cat story.json.temp >> html/story.js
 	echo ";" >> html/story.js
