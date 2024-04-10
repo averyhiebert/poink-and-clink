@@ -1,5 +1,9 @@
 // The "vanilla ink" version of a simple demo scene for the tutorial.
 # TITLE: Simple Poink Game
+# IM_PREFIX: images/
+# CANVAS_WIDTH: 60%
+# CANVAS_WIDTH: 96
+# CANVAS_SHAPE: 96 64
 
 -> exterior
 
@@ -10,9 +14,13 @@
 VAR got_firewood = false
 === exterior ===
 # CLEAR
+#SCENE: forest.background.gif
+{not got_firewood:
+    #IM_SHOW: forest.woodpile.gif
+}
 You are lost deep in the heart of a remote forest.
 Towering pines obscure the night sky.
-+ [dark forest]
++ [2,0,64,43 dark forest]
     Maybe you can find your way out.
     Wander into the thick overgrowth?
     ++ [Yes]
@@ -24,11 +32,11 @@ Towering pines obscure the night sky.
     ++ [No]
         Good idea.
         -> OK -> exterior
-+ {not got_firewood}[pile of firewood]
++ {not got_firewood}[15,43,39,57 pile of firewood]
     You find some firewood lying near the cabin.
     ~got_firewood = true
     -> OK -> exterior
-+ [log cabin]
++ [74,0,96,46 log cabin]
     There is an abandoned log cabin nearby.
     Enter it?
     ++ [Yes]
@@ -40,13 +48,15 @@ Towering pines obscure the night sky.
 VAR fire_lit = false
 === interior ===
 # CLEAR
+# SCENE: interior.background.gif
 You {|once again }find yourself inside {a|the} small cabin. It seems like it hasn't been inhabited in quite some time.
 {fire_lit:
     A fire crackles in the fireplace.
+    # IM_SHOW: interior.fireplace.burning.gif
 - else:
     The fireplace is cold and dark.
 }
-+ {not fire_lit}[fireplace]
++ {not fire_lit}[1,32,20,53 fireplace]
     The fireplace is unlit.
     {got_firewood:
         Would you like to light it?
@@ -59,8 +69,8 @@ You {|once again }find yourself inside {a|the} small cabin. It seems like it has
         You could light it if you had some firewood.
         -> OK -> interior
     }
-+ [window]
++ [30,10,61,45 window]
     It looks cold out there.
     -> OK -> interior
-+ [door]
++ [64,21,88,53 door]
     -> exterior

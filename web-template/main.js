@@ -219,11 +219,15 @@ function parse_global_tag(tag) {
 // Adding/removing images =====================================================
 // TODO make this more DRY
 
-function add_image(path) {
+function add_image(path, force_new) {
+    force_new = force_new || false
+    // If force_new is true, always add a "new" image
+    //  (used when resetting scene)
+    // Otherwise, only add a new image element when not a duplicate.
     var canvas = document.getElementById("canvas");
     var exists = document.querySelector(`#canvas img[src="${path}"]`);
 
-    if (exists) {
+    if (exists && !force_new) {
         // Just move to front.
         canvas.removeChild(exists);
         canvas.appendChild(exists);
@@ -246,7 +250,7 @@ function reset_image(path) {
     var current_images = document.querySelectorAll("#canvas img");
 
     // Add new image *before* removing old ones
-    add_image(path);
+    add_image(path, true);
 
     for(var i=0; i<current_images.length; i++) {
         var img = current_images[i];
