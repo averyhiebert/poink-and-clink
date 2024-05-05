@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="lib/new.css">
 </head>
 
-<body class="subtitle" onclick="click_anywhere_callback()" onkeypress="handle_keypress(event)">
+<body class="subtitle" onclick="click_anywhere_callback()" onkeypress="handle_keypress(event)" onresize="rescale_clickmap()">
     
     <div id="canvas" onmousemove="clear_hovertext()">
         <!-- Images will appear here. Example: -->
@@ -34,7 +34,7 @@
     <section id="story"></section>
 
     
-    <!--
+    <!-- probably gonna remove because it doesn't actually work
     <script src="lib/imageMapResizer.min.js"></script>
     -->
     <script src="ink.js"></script>

@@ -1,15 +1,16 @@
 // The "vanilla ink" version of a simple demo scene for the tutorial.
 # TITLE: Simple Poink Game
 # IM_PREFIX: images/
-//# CANVAS_WIDTH: 60%
-# CANVAS_WIDTH: 96px
+# CANVAS_WIDTH: 60%
+//# CANVAS_WIDTH: 96px
 # CANVAS_SHAPE: 96 64
 
 -> exterior
 
 === OK ===
 + [Ok]
-    ->->
++ [,,,]
+- ->->
 
 VAR got_firewood = false
 === exterior ===

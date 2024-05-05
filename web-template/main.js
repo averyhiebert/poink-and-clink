@@ -147,6 +147,7 @@ function addChoice(choice) {
         area.setAttribute("href","javascript:;");
         area.setAttribute("shape","rect");
         area.setAttribute("coords",clickable.coords);
+        area.setAttribute("data-base-coords",clickable.coords); // for scaling
         if (clickable.text) {
             // TODO alt should be mandatory (accessibility)
             area.setAttribute("alt",clickable.text);
@@ -162,6 +163,7 @@ function addChoice(choice) {
 
         var map = document.getElementById("clickmap");
         map.appendChild(area);
+        rescale_clickmap();
     } else if (clickable) {
         // This is a "click anywhere" choice
         setTimeout(function(){
@@ -237,6 +239,7 @@ function add_image(path, force_new) {
         img.setAttribute("usemap","#clickmap");
         img.setAttribute("src",path);
         img.setAttribute("alt","");
+        img.onload = rescale_clickmap;
         canvas.appendChild(img);
     }
 }
@@ -280,7 +283,7 @@ function parse_clickable_choice(choice) {
         return {coords: result[1], text: result[2]};
     }
 
-    result = /,,, (.*)/.exec(choice.text)
+    result = /,,, *(.*)/.exec(choice.text)
     if (result) {
         // Is a "click anywhere" choice.
         return {coords: null, text: result[1]};
@@ -313,6 +316,48 @@ function handle_keypress(e) {
         // Space triggers "click anywhere to continue" events
         click_anywhere_callback();
     }
+}
+
+// Note: this needs to be called frequently:
+//  - each time the window resizes
+//  - each time an image loads fully (onload)
+//  - each time a clickable area is newly added
+function rescale_clickmap() {
+    // Update the "coords" field of all clickmap areas to be
+    //  a scaled version of the "true" (native image scale) coords,
+    //  as specified by data-base-coords attribute.
+    let img = document.querySelector("#canvas img:first-of-type");
+    if (!img) {
+        // Skip if no image displayed
+        return;
+    }
+    let w_factor = img.clientWidth / img.naturalWidth;
+    let h_factor = img.clientHeight / img.naturalHeight;
+    console.log(w_factor);
+    console.log(h_factor);
+    console.log(img.clientHeight);
+    let clickmap = document.getElementById("clickmap");
+    let areas = document.querySelectorAll("#clickmap area");
+    for (area of areas) {
+        let old = area.getAttribute("data-base-coords")
+            .split(",").map(parseFloat);
+        let new_coords = [
+            w_factor*old[0],
+            h_factor*old[1],
+            w_factor*old[2],
+            h_factor*old[3]
+        ].join(",");
+        area.setAttribute("coords",new_coords);
+    }
+
+    // Also reassign clickmap to only the last (top) image in the div.
+    //  (this is the official recommendation for screenreader compat)
+    let all_imgs = document.querySelectorAll("#canvas img");
+    for (img of all_imgs){
+        img.removeAttribute("usemap");
+    }
+    let last_img = document.querySelector("#canvas img:last-of-type");
+    last_img.setAttribute("usemap","#clickmap");
 }
 
 
@@ -369,5 +414,3 @@ function str_to_bool(str) {
 // Finally, run main
 main(storyContent);    
 
-// Using 3rd-party library to fix scale of image map areas to match rescaled images:
-imageMapResize();
