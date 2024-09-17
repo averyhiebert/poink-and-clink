@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Poink-and-Clink Documentation</title>
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Poink-and-Clink Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api-reference-list-of-tags">API Reference / list of tags</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#design-philosophy">Design Philosophy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#a-note-on-screenreader-accessibility">A Note on Screenreader Accessibility</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="tutorial/">Tutorial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="API/">API Reference</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Poink-and-Clink Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="poink-and-clink-a-point-click-framework-for-ink">Poink-and-Clink: A Point &amp; Click Framework for Ink</h1>
+<p>Poink-and-Clink ("Poink" for short) is a drop-in replacement for the default web export functionality of <a href="https://www.inklestudios.com/ink/">Ink</a>, adding simple point &amp; click game functionality.</p>
+<p>The goal is to make it easy to upgrade a "text-adventure"-like Ink story by adding the ability to selectively display layers of an image (including animations) and select choices by clicking on the image; in other words, a minimal set of functionality for writing a point &amp; click adventure in Ink.  And if you do your art in <a href="https://www.aseprite.org/">Aseprite</a>, there's an export script to streamline the workflow further.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>TODO Link to quickstart tutorial</p>
+<h2 id="api-reference-list-of-tags">API Reference / list of tags</h2>
+<p>Most features in Poink are implemented using tags (following the precedent set by the default web export functionality in Inky).  For a list of supported tags, check HERE (TODO LINK).</p>
+<h2 id="design-philosophy">Design Philosophy</h2>
+<p>Poink is constructed around the following design pillars:</p>
+<ul>
+<li><strong>Drawing and Writing:</strong> Developing a point &amp; click game should involve <em>mostly</em> drawing and writing.  You should be able to spend all your time in a drawing program (particularly Aseprite) or in an interactive-narrative-editor (Inky), with as little external programming/configuration as possible.</li>
+<li><strong>Fully playable as text:</strong> Poink is supposed to support prototyping a game in pure text (i.e. playable in Inky) and then progressively adding graphics without removing the full playability of the text content.  Done properly, this should <em>hopefully</em> result in games that are screenreader accessible (see section below, though), and that can still be ported to another game engine without much additional effort.</li>
+<li><strong>Small, quick games:</strong> It should be convenient to create <em>small</em> games quickly using Poink. Think jam games, old-school flash games, prototypes, interactive web comics.  For highly complex and feature-rich games you might want to go somewhere else.</li>
+<li><strong>Extensibility:</strong> As with conventional Inky web exports, you still have full control over the styling of the interface (via CSS) and the ability to add custom functionality by modifying the relatively-simple JavaScript code. (At some point in the future I would like to rework the JS with a proper API so that you can add variable observers, external functions, and custom line display without even touching <code>main.js</code>)</li>
+</ul>
+<h2 id="limitations">Limitations</h2>
+<p>Here are some things you <em>can't</em> do easily in Poink:</p>
+<ul>
+<li>3rd-person characters walking around in an environment (unless you animate it yourself frame-by-frame).</li>
+<li>Complex inventory logic, i.e. combining items and "using" arbitrary items on arbitrary objects (unless you write it yourself in Ink).</li>
+<li>Always-present UI elements, i.e. pause menu or "show inventory" button (unless you write it yourself in HTML/CSS/JS)<ul>
+<li>(There are <em>ok-ish</em> workarounds for this in Poink, depending on what you're trying to accomplish)</li>
+</ul>
+</li>
+</ul>
+<p>But if you don't want any of these features, Poink may be for you! And it should still be relatively simple to modify the JavaScript to add custom functionality, as you could with an Inky web export.</p>
+<h2 id="a-note-on-screenreader-accessibility">A Note on Screenreader Accessibility</h2>
+<p>I have tried my best to make it so that everything is screenreader accessible if you use the TEXTMODE tag.  Unfortunately, when there is no visible text onscreen, screenreader navigation in Chrome (and to a lesser extent Firefox) seems to run into some difficulties.  If screenreader support is important to you, avoid having moments when there is <em>no</em> text on screen.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial/" class="btn btn-neutral float-right" title="Tutorial">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="tutorial/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2024-09-17 11:08:00.147851+00:00
+-->

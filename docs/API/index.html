@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>API Reference - Poink-and-Clink Documentation</title>
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "API Reference";
+    var mkdocs_page_input_path = "API.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Poink-and-Clink Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tutorial/">Tutorial</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">API Reference</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#clickable-choices">Clickable choices</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scene">SCENE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#im_show">IM_SHOW</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#im_hide">IM_HIDE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#im_replace">IM_REPLACE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#im_prefix">IM_PREFIX</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#textmode">TEXTMODE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#default-inky-tags">Default Inky Tags</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#global-configuration">Global Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#canvas_shape">CANVAS_SHAPE</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#clear_after_choices">CLEAR_AFTER_CHOICES</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#replace_underscores">REPLACE_UNDERSCORES</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#skip_choice_text">SKIP_CHOICE_TEXT</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Poink-and-Clink Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>API Reference</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="api-reference">API Reference</h1>
+<h2 id="clickable-choices">Clickable choices</h2>
+<p>A "clickable" choice can be created as follows:</p>
+<pre><code> * [50,50,100,100 kitchen door]
+    -&gt; some_knot
+</code></pre>
+<p>This creates a rectangular clickable area whose top-left corner is at 50,50 and whose bottom-right corner is at 100,100 (in pixel coordinates), with the alt text and hover text "kitchen door."</p>
+<p>In a small abuse of notation, a "click anywhere" option can be added as follows:</p>
+<pre><code> * [,,, Click to continue...]
+    -&gt; some_knot
+</code></pre>
+<details>
+<summary>Additional details</summary>
+<p>The alt/hover text is optional, but you really should include it (for code readability and for screenreader accessibility).</p>
+
+<p>There should be <strong>no spaces</strong> between coordinates, and at least one space before the hover text.  </p>
+
+<p>The origin (0,0) corresponds to the top left of the image, and the <em>y</em> axis increases in the downwards direction.  This should match with how pixel coordinates are displayed in most image editing software.</p>
+
+<p>When two clickable areas overlap, the one that was added *first* takes precedence.</p>
+</details>
+
+<hr />
+<h2 id="scene">SCENE</h2>
+<pre><code># SCENE: image.png
+</code></pre>
+<p>Set the current contents of the canvas to the specified image.  Completely replaces any images that may have been displayed previously.</p>
+<p>Useful to call once when changing to a new scene.</p>
+<h2 id="im_show">IM_SHOW</h2>
+<pre><code># IM_SHOW: image.png
+</code></pre>
+<p>Adds the specified image into the scene <em>on top</em> of any existing images.</p>
+<h2 id="im_hide">IM_HIDE</h2>
+<pre><code># IM_HIDE: image.png
+</code></pre>
+<p>Removes the specified image from the scene.</p>
+<h2 id="im_replace">IM_REPLACE</h2>
+<pre><code># IM_REPLACE: image1.png image2.png
+</code></pre>
+<p>Replaces image1 with image2, preserving order of all images.
+If image1 does not already exist, image2 is simply added to the scene.</p>
+<h2 id="im_prefix">IM_PREFIX</h2>
+<pre><code># IM_PREFIX: images/
+</code></pre>
+<p>Set a prefix to be added automatically to all image filename arguments.
+Useful for grouping images by scene.</p>
+<h2 id="textmode">TEXTMODE</h2>
+<pre><code>Textual description of image # TEXTMODE
+</code></pre>
+<p>For accessibility and text-based prototyping in Inky, you can use the <code>TEXTMODE</code> tag for text that will not be displayed to the player in the final export (but will remain accessible to screenreaders).</p>
+<h2 id="default-inky-tags">Default Inky Tags</h2>
+<p>The following tags are supported as in Inky default export:</p>
+<pre><code># CLEAR
+# RESTART
+# CLASS: classname
+# TITLE: My Cool Game
+# AUDIO: file.mp3
+# AUDIOLOOP: file.mp3
+</code></pre>
+<p><code>AUDIOLOOP</code> functions slightly differently from Inky: specifying the name of a file that is already playing will not restart the loop.</p>
+<h2 id="global-configuration">Global Configuration</h2>
+<p>Some global settings can be configured using global tags (tags at the top of the ink file)</p>
+<h3 id="canvas_shape">CANVAS_SHAPE</h3>
+<p>This setting is <strong>MANDATORY</strong>.</p>
+<pre><code># CANVAS_SHAPE: 200 200
+</code></pre>
+<p>Informs the canvas what size the images are going to be (in pixels).  If you don't set this correctly then the playing area will not display correctly.</p>
+<h3 id="clear_after_choices">CLEAR_AFTER_CHOICES</h3>
+<pre><code># CLEAR_AFTER_CHOICES: true
+</code></pre>
+<p>If set to true, the text will be cleared every time a choice is picked. True by default, as this makes sense for point &amp; click-type games in most cases, although you may sometimes prefer traditional ink behaviour.</p>
+<h3 id="replace_underscores">REPLACE_UNDERSCORES</h3>
+<pre><code># REPLACE_UNDERSCORES: false
+</code></pre>
+<p>If set to true, all underscores in text produced by the Ink story will be replaced with spaces (useful if you want to be lazy and reuse variable names as display text.  I would normally not encourage this, but Ink in particular makes it annoying to set display text for some things, so I allow it.)</p>
+<h3 id="skip_choice_text">SKIP_CHOICE_TEXT</h3>
+<pre><code># SKIP_CHOICE_TEXT: false
+</code></pre>
+<p>If set to true, the first line of text after a choice is made will be skipped.  This basically lets you leave out the <code>[ ]</code>, <em>if</em> you're certain that you would be using it all the time anyways (might save a small number of keystrokes, but to be honest it's probably not worth it).</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../tutorial/" class="btn btn-neutral" title="Tutorial"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../tutorial/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

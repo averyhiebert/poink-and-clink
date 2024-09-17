@@ -30,10 +30,9 @@ Towering pines obscure the night sky.
     -> OK -> exterior
 + [log cabin]
     There is an abandoned log cabin nearby.
-    Enter it?
-    ++ [Yes]
+    ++ [Enter the cabin.]
         -> interior
-    ++ [No]
+    ++ [Back]
         -> exterior
 
 

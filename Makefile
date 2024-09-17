@@ -12,7 +12,10 @@ example: clean
 	cd example-project && make
 	cd ..
 
-.PHONY: clean example
+.PHONY: clean example docs
+
+docs:
+	mkdocs build
 
 clean:
 	# Remove data from web template (I leave story.js 'cause I'm lazy)
@@ -21,5 +24,6 @@ clean:
 	cd example-project && make clean
 	cd ..
 	rm -rf example-project/html
+	rm -r docs
 
 

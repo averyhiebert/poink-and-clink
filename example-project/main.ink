@@ -37,10 +37,9 @@ Towering pines obscure the night sky.
     -> OK -> exterior
 + [73,9,96,48 log cabin]
     There is an abandoned log cabin nearby.
-    Enter it?
-    ++ [Yes]
+    ++ [Enter cabin]
         -> interior
-    ++ [No]
+    ++ [Back]
         -> exterior
 
 
@@ -48,12 +47,12 @@ VAR fire_lit = false
 === interior ===
 # CLEAR
 # SCENE: interior.background.gif
-You {|once again }find yourself inside {a|the} small cabin. It seems like it hasn't been inhabited in quite some time. # TEXTMODE
+You {|once again }find yourself inside {a|the} small cabin. It seems like it hasn't been inhabited in quite some time.
 {fire_lit:
-    A fire crackles in the fireplace. # TEXTMODE
+    A fire crackles in the fireplace.
     # IM_SHOW: interior.fireplace.burning.gif
 - else:
-    The fireplace is cold and dark. # TEXTMODE
+    The fireplace is cold and dark.
 }
 + {not fire_lit}[73,28,96,48 fireplace]
     The fireplace is unlit.

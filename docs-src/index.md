@@ -18,7 +18,7 @@ Most features in Poink are implemented using tags (following the precedent set b
 Poink is constructed around the following design pillars:
 
  - **Drawing and Writing:** Developing a point & click game should involve *mostly* drawing and writing.  You should be able to spend all your time in a drawing program (particularly Aseprite) or in an interactive-narrative-editor (Inky), with as little external programming/configuration as possible.
- - **Fully playable as text:** Poink is supposed to support prototyping a game in pure text (i.e. playable in Inky) and then progressively adding graphics without removing the full playability of the text content.  Done properly, this should *hopefully* result in games that are screenreader accessible, and that can still be ported to another game engine without much additional effort.
+ - **Fully playable as text:** Poink is supposed to support prototyping a game in pure text (i.e. playable in Inky) and then progressively adding graphics without removing the full playability of the text content.  Done properly, this should *hopefully* result in games that are screenreader accessible (see section below, though), and that can still be ported to another game engine without much additional effort.
  - **Small, quick games:** It should be convenient to create *small* games quickly using Poink. Think jam games, old-school flash games, prototypes, interactive web comics.  For highly complex and feature-rich games you might want to go somewhere else.
  - **Extensibility:** As with conventional Inky web exports, you still have full control over the styling of the interface (via CSS) and the ability to add custom functionality by modifying the relatively-simple JavaScript code. (At some point in the future I would like to rework the JS with a proper API so that you can add variable observers, external functions, and custom line display without even touching `main.js`)
 
@@ -33,3 +33,6 @@ Here are some things you *can't* do easily in Poink:
 
 But if you don't want any of these features, Poink may be for you! And it should still be relatively simple to modify the JavaScript to add custom functionality, as you could with an Inky web export.
 
+## A Note on Screenreader Accessibility
+
+I have tried my best to make it so that everything is screenreader accessible if you use the TEXTMODE tag.  Unfortunately, when there is no visible text onscreen, screenreader navigation in Chrome (and to a lesser extent Firefox) seems to run into some difficulties.  If screenreader support is important to you, avoid having moments when there is *no* text on screen.

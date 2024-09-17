@@ -27,8 +27,6 @@ function printLine() {
     let paragraphText = format_text(story.Continue());
     let tags = story.currentTags;
 
-    let skip_line = false;
-
     // Any special tags included with this line
     let customClasses =[];
 
@@ -98,6 +96,11 @@ function printLine() {
         }
     } // for each tag
 
+    // Ignore whitespace-only lines:
+    if (paragraphText.trim() == ""){
+        return;
+    }
+
     var paragraphElement = document.createElement('p');
     paragraphElement.innerHTML = paragraphText;
 
@@ -139,15 +142,14 @@ function addChoice(choice) {
         //  (not high priority, can just use [ ] in Ink)
 
         var area = document.createElement("area");
-        // href is unfortunately necessary
-        //  (or else it won't be clickable via tab/enter)
-        // I have not found a way to get rid of the browser status bar
-        //  while still maintaining tab accessibility.
-        // TODO make this configurable?
-        area.setAttribute("href","javascript:;");
+        // Note: we do *not* want these to be in the tab order,
+        //  since we make screenreader-only links instead.
+        // area.setAttribute("href","javascript:;");
         area.setAttribute("shape","rect");
         area.setAttribute("coords",clickable.coords);
         area.setAttribute("data-base-coords",clickable.coords); // for scaling
+        area.setAttribute("tabindex",-1);
+        area.setAttribute("aria-hidden",true);
         if (clickable.text) {
             // TODO alt should be mandatory (accessibility)
             area.setAttribute("alt",clickable.text);
@@ -155,7 +157,6 @@ function addChoice(choice) {
                 set_hovertext(clickable.text);
             }
         }
-        //area.onclick = choose_this;
         area.addEventListener("click",function(event) {
             event.preventDefault(); // Don't follow <a> link
             choose_this();
@@ -170,23 +171,36 @@ function addChoice(choice) {
             set_click_anywhere(choose_this);
         },100); // timeout to prevent the current click from triggering it.
         // (it's hacky but probably fairly robust)
-    } else {
-        // Regular text-based choice
-
-        var storySection = document.getElementById("story");
-        var choiceParagraphElement = document.createElement('p');
-        choiceParagraphElement.classList.add("choice");
-        choiceParagraphElement.innerHTML = `<button>${format_text(text)}</button>`
-        storySection.appendChild(choiceParagraphElement);
-
-        // Make the choice clickable
-        // Note: we use button, not link, for better semantic HTML
-        var buttonEl = choiceParagraphElement.querySelectorAll("button")[0]
-        buttonEl.addEventListener("click",function(event) {
-            //event.preventDefault(); // Don't follow <a> link
-            choose_this();
-        });
     }
+    // Create text-based choice link.
+    // Note: we still do this for image clickables, we just also add the screenreader-only tag.
+
+    var storySection = document.getElementById("story");
+    var choiceParagraphElement = document.createElement('p');
+    choiceParagraphElement.classList.add("choice");
+    if (clickable) {
+        choiceParagraphElement.classList.add("sr-only");
+        if (clickable.coords){
+            // TODO: definitely needs to be mandatory.
+            text = clickable.text;
+        } else {
+            // TODO something clearer/more intuitive for screenreader users.
+            text = "Click anywhere...";
+        }
+    }
+    // TODO: configurable choice of button vs link?
+    //choiceParagraphElement.innerHTML = `<button>${format_text(text)}</button>`
+    choiceParagraphElement.innerHTML = `<a href="javascript:;">${format_text(text)}</a>`
+    storySection.appendChild(choiceParagraphElement);
+
+    // Add click event.
+    // Note: we use button, not link, for better semantic HTML
+    //var buttonEl = choiceParagraphElement.querySelectorAll("button")[0]
+    var buttonEl = choiceParagraphElement.querySelectorAll("a")[0]
+    buttonEl.addEventListener("click",function(event) {
+        //event.preventDefault(); // Don't follow <a> link
+        choose_this();
+    });
     // TODO Inline links?
 }
 
