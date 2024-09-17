@@ -6,7 +6,9 @@
 
 
 # Make the example project.
-example: clean
+example:
+	cd example-project && make clean
+	cd ..
 	cp -r web-template example-project/html
 	rm example-project/html/story.js
 	cd example-project && make
