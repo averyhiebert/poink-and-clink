@@ -96,20 +96,13 @@ The following tags are supported as in Inky default export:
 
 Some global settings can be configured using global tags (tags at the top of the ink file)
 
-### CANVAS\_SHAPE and CANVAS\_WIDTH
-These settings are **MANDATORY** if you want to use the canvas.
+### CANVAS\_SHAPE
+This setting is **MANDATORY**.
 
 ```
 # CANVAS_SHAPE: 200 200
 ```
 Informs the canvas what size the images are going to be (in pixels).  If you don't set this correctly then the playing area will not display correctly.
-
-```
-# CANVAS_WIDTH: 60%
-```
-Sets the width of the "canvas" area (supports any format recognized by CSS).  Setting it to 0 (the default) will entirely hide the canvas.
-
-Percentages are relative to the width of the `body` of the document, which is *not* the total width of the window (when using the default styling).
 
 ### CLEAR\_AFTER\_CHOICES
 ```
