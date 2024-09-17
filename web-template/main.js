@@ -201,9 +201,6 @@ function parse_global_tag(tag) {
         case "TITLE":
             document.title = val;
             break;
-        case "CANVAS_WIDTH":
-            var canvas = document.getElementById("canvas");
-            canvas.style.width = val;
         case "CANVAS_SHAPE":
             var canvas = document.getElementById("canvas");
             let [x,y] = val.split(/\s+/);

@@ -1,4 +1,4 @@
-/* I'm trying to keep styling to a minumum here.  Ideally you should be ably to apply any "classless css framework."
+/* I'm trying to keep styling to a minumum here.  Ideally you should be able to apply any "classless css framework."
 
 That being said, this file contains some CSS that serves an important purpose (mostly positioning-related).  Should interfere minimally with any other user-defined CSS.*/
 
@@ -7,12 +7,16 @@ That being said, this file contains some CSS that serves an important purpose (m
     cursor: pointer;
 }
 
+p.choice {
+  text-align: center;
+}
+
 #canvas {
-  width: 0; /* Override with a percentage in Ink */
+  width: 100%; /* Override with a percentage in Ink */
   margin: auto;
   aspect-ratio: 1;
   position: relative; /* so that children can use absolute */
-  background: #303030; /* for dev/testing purposes*/
+  /*background: #303030; *//* for dev/testing purposes*/
 
   /* make contents not selectable */
   -moz-user-select: none;
@@ -21,6 +25,7 @@ That being said, this file contains some CSS that serves an important purpose (m
   /* draggable='false' might make these redundant, but might as well be safe: */
   user-drag: none;
   -webkit-user-drag: none;
+  margin-bottom: 1rem;
 }
 
 #canvas img {
@@ -32,9 +37,10 @@ That being said, this file contains some CSS that serves an important purpose (m
     /* Turn off antialiasing for nice pixel art. */
     /* TODO Make this configurable? */
     image-rendering: -moz-crisp-edges;
-    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
     image-rendering: -o-crisp-edges;
     image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
 }
 
@@ -66,4 +72,9 @@ https://webaim.org/techniques/css/invisiblecontent/#techniques
     width:1px;
     height:1px;
     overflow:hidden;
+}
+
+body {
+  /* Controversial choice maybe, but of course the user can change it.*/
+  max-width: 500px;
 }
