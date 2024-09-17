@@ -5,11 +5,11 @@
 A "clickable" choice can be created as follows:
 
 ```
- * [0,0,100,100 kitchen door]
+ * [50,50,100,100 kitchen door]
     -> some_knot
 ```
 
-This creates a rectangular clickable area from 0,0 to 100,100 with the alt text and hover text "kitchen door."
+This creates a rectangular clickable area whose top-left corner is at 50,50 and whose bottom-right corner is at 100,100 (in pixel coordinates), with the alt text and hover text "kitchen door."
 
 In a small abuse of notation, a "click anywhere" option can be added as follows:
 ```
