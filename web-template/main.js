@@ -43,10 +43,12 @@ function printLine() {
             // Todo some checks
             if (tag == "CLEAR"){
                 clear_text();
-            }else if (tag == "RESTART"){
+            } else if (tag == "RESTART"){
                 clear_text();
                 restart();
                 return;
+            } else if (tag == "TEXTMODE"){
+                customClasses.push("sr-only");
             }
         } else if (property == "IM_SHOW") {
             add_image(image_prefix + val);
@@ -62,8 +64,6 @@ function printLine() {
             image_prefix = val;
         } else if (property == "CLASS"){
             customClasses.push(val);
-        } else if (property == "TEXTMODE"){
-            customClasses.push("sr-only");
         } else if (property == "AUDIO") {
             /* Note: copied from Inky export */
             let src = val;
@@ -207,8 +207,6 @@ function parse_global_tag(tag) {
         case "CANVAS_SHAPE":
             var canvas = document.getElementById("canvas");
             let [x,y] = val.split(/\s+/);
-            console.log("ratio is:");
-            console.log(x/y);
             canvas.style["aspect-ratio"] = x/y;
         case "CLEAR_AFTER_CHOICES":
         case "REPLACE_UNDERSCORES":
@@ -333,9 +331,6 @@ function rescale_clickmap() {
     }
     let w_factor = img.clientWidth / img.naturalWidth;
     let h_factor = img.clientHeight / img.naturalHeight;
-    console.log(w_factor);
-    console.log(h_factor);
-    console.log(img.clientHeight);
     let clickmap = document.getElementById("clickmap");
     let areas = document.querySelectorAll("#clickmap area");
     for (area of areas) {

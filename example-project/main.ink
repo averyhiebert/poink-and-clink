@@ -1,4 +1,4 @@
-// The "vanilla ink" version of a simple demo scene for the tutorial.
+// The non-Aseprite-script version of a simple demo scene for the tutorial.
 # TITLE: Simple Poink Game
 # IM_PREFIX: images/
 # CANVAS_WIDTH: 60%
@@ -21,7 +21,7 @@ VAR got_firewood = false
 }
 You are lost deep in the heart of a remote forest.
 Towering pines obscure the night sky.
-+ [2,0,64,43 dark forest]
++ [0,1,56,48 dark forest]
     Maybe you can find your way out.
     Wander into the thick overgrowth?
     ++ [Yes]
@@ -33,11 +33,11 @@ Towering pines obscure the night sky.
     ++ [No]
         Good idea.
         -> OK -> exterior
-+ {not got_firewood}[15,43,39,57 pile of firewood]
++ {not got_firewood}[57,42,69,48 pile of wood]
     You find some firewood lying near the cabin.
     ~got_firewood = true
     -> OK -> exterior
-+ [74,0,96,46 log cabin]
++ [73,9,96,48 log cabin]
     There is an abandoned log cabin nearby.
     Enter it?
     ++ [Yes]
@@ -50,14 +50,14 @@ VAR fire_lit = false
 === interior ===
 # CLEAR
 # SCENE: interior.background.gif
-You {|once again }find yourself inside {a|the} small cabin. It seems like it hasn't been inhabited in quite some time.
+You {|once again }find yourself inside {a|the} small cabin. It seems like it hasn't been inhabited in quite some time. # TEXTMODE
 {fire_lit:
-    A fire crackles in the fireplace.
+    A fire crackles in the fireplace. # TEXTMODE
     # IM_SHOW: interior.fireplace.burning.gif
 - else:
-    The fireplace is cold and dark.
+    The fireplace is cold and dark. # TEXTMODE
 }
-+ {not fire_lit}[1,32,20,53 fireplace]
++ {not fire_lit}[73,28,96,48 fireplace]
     The fireplace is unlit.
     {got_firewood:
         Would you like to light it?
@@ -70,8 +70,8 @@ You {|once again }find yourself inside {a|the} small cabin. It seems like it has
         You could light it if you had some firewood.
         -> OK -> interior
     }
-+ [30,10,61,45 window]
++ [31,9,61,32 window]
     It looks cold out there.
     -> OK -> interior
-+ [64,21,88,53 door]
++ [2,9,27,48 door]
     -> exterior

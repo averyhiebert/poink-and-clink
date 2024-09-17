@@ -13,10 +13,14 @@ My game [The Restricted Archive](https://averyhiebert.itch.io/the-restricted-arc
 ## TODO
 Before release:
  - basic tutorial
+    - rewrite demo to have "warm yourself -> get out" ending.
+    - add smoke to exterior scene where appropriate
+ - remove CANVAS_WIDTH tag, make sizing solely depend on CSS
 
 ## Roadmap
 
 Things I hope to add eventually, in approximate order of priority:
+ - check whether the Aseprite script even works on Windows (edit if necessary)
  - Better CSS, including a fullscreen option
     - (I am not good at CSS, please help)
  - project template (with Makefile for easy build + better Aseprite workflow)
@@ -24,9 +28,9 @@ Things I hope to add eventually, in approximate order of priority:
     - "basic" + aseprite tutorial
     - project template tutorial
  - better animation support
+ - saving/loading, maybe??
  - better support for custom JS without editing main.js
  - Improved accessibility / screenreader support
-    - fix image map to only be used by one image at a time
     - actually test in Orca & resolve any issues identified
  - better error checking / more informative error messages
     - (at least wrapping the "tag processing" code in a try/catch and skipping problematic lines, with error message in console.)

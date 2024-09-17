@@ -2,7 +2,7 @@
 #  inklecate must be added to your path (v1.1.1 or earlier)
 #  aseprite must be added to your path
 ASE := $(wildcard *.ase)
-ASE_EXPORT := $(patsubst %.ase,aseprite-export/%.exported,${ASE})
+ASE_EXPORT := $(patsubst %.ase,aseprite-export/ink/%.ink,${ASE})
 
 all: html
 
@@ -15,15 +15,16 @@ html/story.js:
 	echo ";" >> html/story.js
 	rm story.json.temp
 
-# TODO Correctly detect dependencies for audio
+# Technically not needed as there's no audio for the demo project,
+#  just here for demo purposes.
 html/audio:
 	cp -r audio/* html/audio
 
 html/images: $(ASE_EXPORT)
 	cp -r aseprite-export/images/* html/images
 
-# I use ".exported" files as dummy files to correctly track which dependencies have been made
-aseprite-export/%.exported: %.ase
+# Note: I'm using the exported ink as the target, since the filename of exported images will vary depending on layers etc., but just to be clear, this step builds the exported images as well as the exported ink files.
+aseprite-export/ink/%.ink: %.ase
 	aseprite $^ -b --script-param SKIP_UI --script ../aseprite-script/poink_clink_export.lua
 	touch $@
 
@@ -34,6 +35,5 @@ clean:
 	-rm -rf html/images/*
 	-rm -rf html/audio/*
 	-rm -rf html/story.js
-	-rm aseprite-export/*.exported
 	-rm *.temp
 
