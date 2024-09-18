@@ -8,7 +8,9 @@ TODO Add link to documentation, once it's set up.
 
 ## What's Possible / Demo Game
 
-My game [The Restricted Archive](https://averyhiebert.itch.io/the-restricted-archive) was made in an older, private version of this engine.  I don't really want to release the code, since there are some pretty noticeable differences between the versions and I don't want to cause confusion, but it's still essentially an accurate depiction of what's possible in Poink (except that it doesn't have screenreader support!).
+The quickstart tutorial (TODO LINK) walks through the steps of creating a small demo game, which can be played here: TODO LINK
+
+For a more substantial example (around 30 mins playtime), my game [The Restricted Archive](https://averyhiebert.itch.io/the-restricted-archive) was made in an older, private version of this engine.  I don't really want to release the code, since there are some pretty noticeable differences between the versions and I don't want to cause confusion, but it's still essentially an accurate depiction of what's possible in Poink (albeit lacking screenreader support, and featuring an alternate fullscreen layout).
 
 ## TODO
 Before release:
