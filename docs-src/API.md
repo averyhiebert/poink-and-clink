@@ -67,11 +67,11 @@ If image1 does not already exist, image2 is simply added to the scene.
 # IM_PREFIX: images/
 ```
 Set a prefix to be added automatically to all image filename arguments.
-Useful for grouping images by scene.
+Useful for grouping images by scene in larger projects.
 
 ## TEXTMODE
 ```
-Textual description of image # TEXTMODE
+Textual description of the current scene. # TEXTMODE
 ```
 For accessibility and text-based prototyping in Inky, you can use the `TEXTMODE` tag for text that will not be displayed to the player in the final export (but will remain accessible to screenreaders).
 

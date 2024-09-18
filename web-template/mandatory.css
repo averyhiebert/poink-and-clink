@@ -14,7 +14,7 @@ p.choice {
 #canvas {
   width: 100%; /* Override with a percentage in Ink */
   margin: auto;
-  aspect-ratio: 1;
+  aspect-ratio: 0; /* Note: gets overridden by CANVAS_SHAPE tag */
   position: relative; /* so that children can use absolute */
   /*background: #303030; *//* for dev/testing purposes*/
 
