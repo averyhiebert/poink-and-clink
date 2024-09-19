@@ -7,20 +7,19 @@ The goal is to make it easy to upgrade a "text-adventure"-like Ink story by addi
 
 ## Getting Started
 
-TODO Link to quickstart tutorial
+The [quickstart tutorial](tutorial) shows how to convert a simple text-based ink game into [this demo game](media/demo).
 
 ## API Reference / list of tags
 
-Most features in Poink are implemented using tags (following the precedent set by the default web export functionality in Inky).  For a list of supported tags, check HERE (TODO LINK).
+Most features in Poink are implemented using tags (following the precedent set by the default web export functionality in Inky).  For a list of supported tags, check [the API reference](API).
 
 ## Design Philosophy
 
-Poink is constructed around the following design pillars:
+Poink is constructed around the following design pillars in mind:
 
  - **Drawing and Writing:** Developing a point & click game should involve *mostly* drawing and writing.  You should be able to spend all your time in a drawing program (particularly Aseprite) or in an interactive-narrative-editor (Inky), with as little external programming/configuration as possible.
  - **Fully playable as text:** Poink is supposed to support prototyping a game in pure text (i.e. playable in Inky) and then progressively adding graphics without removing the full playability of the text content.  Done properly, this should *hopefully* result in games that are screenreader accessible (see section below, though), and that can still be ported to another game engine without much additional effort.
- - **Small, quick games:** It should be convenient to create *small* games quickly using Poink. Think jam games, old-school flash games, prototypes, interactive web comics.  For highly complex and feature-rich games you might want to go somewhere else.
- - **Extensibility:** As with conventional Inky web exports, you still have full control over the styling of the interface (via CSS) and the ability to add custom functionality by modifying the relatively-simple JavaScript code. (At some point in the future I would like to rework the JS with a proper API so that you can add variable observers, external functions, and custom line display without even touching `main.js`)
+ - **Simple, quick games:** Poink is obviously not as feature-rich as a dedicated engine like Adventure Game Studio. The intended use case is relatively simple games where using a system like that would be overkill. Think jam games, flash-esque games, prototypes, interactive web comics.  For highly complex and feature-rich games you might want to go somewhere else.
 
 ## Limitations
 
@@ -35,4 +34,6 @@ But if you don't want any of these features, Poink may be for you! And it should
 
 ## A Note on Screenreader Accessibility
 
-I have tried my best to make it so that everything is screenreader accessible if you use the TEXTMODE tag.  Unfortunately, when there is no visible text onscreen, screenreader navigation in Chrome (and to a lesser extent Firefox) seems to run into some difficulties.  If screenreader support is important to you, avoid having moments when there is *no* text on screen.
+I have tried my best to make it so that everything is screenreader accessible, including providing the TEXTMODE tag, which allows text to be presented to screenreader users only.  Unfortunately, when there is no visible text on screen, screenreader navigation in Chrome (and to a lesser extent Firefox) seems to run into some difficulties.  If screenreader support is important to you, avoid relying on the TEXTMODE tag for now and try to convey all relevant information through visible text and hover text.
+
+If someone who knows more about screenreaders is able to help with working out the bugs, that would be greatly appreciated!

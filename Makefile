@@ -14,9 +14,10 @@ example:
 	cd example-project && make
 	cd ..
 
-.PHONY: clean example docs
+.PHONY: clean example
 
-docs:
+docs: example docs-src
+	cp -r example-project/html docs-src/media/demo
 	mkdocs build
 
 clean:
@@ -27,5 +28,6 @@ clean:
 	cd ..
 	rm -rf example-project/html
 	rm -r docs
+	rm -r docs-src/media/demo
 
 

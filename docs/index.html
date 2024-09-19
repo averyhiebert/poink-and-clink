@@ -105,16 +105,15 @@
 <p>Poink-and-Clink ("Poink" for short) is a drop-in replacement for the default web export functionality of <a href="https://www.inklestudios.com/ink/">Ink</a>, adding simple point &amp; click game functionality.</p>
 <p>The goal is to make it easy to upgrade a "text-adventure"-like Ink story by adding the ability to selectively display layers of an image (including animations) and select choices by clicking on the image; in other words, a minimal set of functionality for writing a point &amp; click adventure in Ink.  And if you do your art in <a href="https://www.aseprite.org/">Aseprite</a>, there's an export script to streamline the workflow further.</p>
 <h2 id="getting-started">Getting Started</h2>
-<p>TODO Link to quickstart tutorial</p>
+<p>The <a href="tutorial">quickstart tutorial</a> shows how to convert a simple text-based ink game into <a href="media/demo">this demo game</a>.</p>
 <h2 id="api-reference-list-of-tags">API Reference / list of tags</h2>
-<p>Most features in Poink are implemented using tags (following the precedent set by the default web export functionality in Inky).  For a list of supported tags, check HERE (TODO LINK).</p>
+<p>Most features in Poink are implemented using tags (following the precedent set by the default web export functionality in Inky).  For a list of supported tags, check <a href="API">the API reference</a>.</p>
 <h2 id="design-philosophy">Design Philosophy</h2>
-<p>Poink is constructed around the following design pillars:</p>
+<p>Poink is constructed around the following design pillars in mind:</p>
 <ul>
 <li><strong>Drawing and Writing:</strong> Developing a point &amp; click game should involve <em>mostly</em> drawing and writing.  You should be able to spend all your time in a drawing program (particularly Aseprite) or in an interactive-narrative-editor (Inky), with as little external programming/configuration as possible.</li>
 <li><strong>Fully playable as text:</strong> Poink is supposed to support prototyping a game in pure text (i.e. playable in Inky) and then progressively adding graphics without removing the full playability of the text content.  Done properly, this should <em>hopefully</em> result in games that are screenreader accessible (see section below, though), and that can still be ported to another game engine without much additional effort.</li>
-<li><strong>Small, quick games:</strong> It should be convenient to create <em>small</em> games quickly using Poink. Think jam games, old-school flash games, prototypes, interactive web comics.  For highly complex and feature-rich games you might want to go somewhere else.</li>
-<li><strong>Extensibility:</strong> As with conventional Inky web exports, you still have full control over the styling of the interface (via CSS) and the ability to add custom functionality by modifying the relatively-simple JavaScript code. (At some point in the future I would like to rework the JS with a proper API so that you can add variable observers, external functions, and custom line display without even touching <code>main.js</code>)</li>
+<li><strong>Simple, quick games:</strong> Poink is obviously not as feature-rich as a dedicated engine like Adventure Game Studio. The intended use case is relatively simple games where using a system like that would be overkill. Think jam games, flash-esque games, prototypes, interactive web comics.  For highly complex and feature-rich games you might want to go somewhere else.</li>
 </ul>
 <h2 id="limitations">Limitations</h2>
 <p>Here are some things you <em>can't</em> do easily in Poink:</p>
@@ -128,7 +127,8 @@
 </ul>
 <p>But if you don't want any of these features, Poink may be for you! And it should still be relatively simple to modify the JavaScript to add custom functionality, as you could with an Inky web export.</p>
 <h2 id="a-note-on-screenreader-accessibility">A Note on Screenreader Accessibility</h2>
-<p>I have tried my best to make it so that everything is screenreader accessible if you use the TEXTMODE tag.  Unfortunately, when there is no visible text onscreen, screenreader navigation in Chrome (and to a lesser extent Firefox) seems to run into some difficulties.  If screenreader support is important to you, avoid having moments when there is <em>no</em> text on screen.</p>
+<p>I have tried my best to make it so that everything is screenreader accessible, including providing the TEXTMODE tag, which allows text to be presented to screenreader users only.  Unfortunately, when there is no visible text on screen, screenreader navigation in Chrome (and to a lesser extent Firefox) seems to run into some difficulties.  If screenreader support is important to you, avoid relying on the TEXTMODE tag for now and try to convey all relevant information through visible text and hover text.</p>
+<p>If someone who knows more about screenreaders is able to help with working out the bugs, that would be greatly appreciated!</p>
               
             </div>
           </div>
@@ -182,5 +182,5 @@
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2024-09-18 08:20:23.008073+00:00
+Build Date UTC : 2024-09-19 04:51:05.304707+00:00
 -->

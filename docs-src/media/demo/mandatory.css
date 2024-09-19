@@ -1,0 +1,95 @@
+/* I'm trying to keep styling to a minumum here.  Ideally you should be able to apply any "classless css framework."
+
+That being said, this file contains some CSS that serves an important purpose (mostly positioning-related).  Should interfere minimally with any other user-defined CSS.*/
+
+
+#clickmap area{
+    cursor: pointer;
+}
+
+p.choice {
+  text-align: center;
+}
+
+#canvas {
+  width: 100%; /* Override with a percentage in Ink */
+  margin: auto;
+  aspect-ratio: 0; /* Note: gets overridden by CANVAS_SHAPE tag */
+  position: relative; /* so that children can use absolute */
+  /*background: #303030; *//* for dev/testing purposes*/
+
+  /* make contents not selectable */
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* draggable='false' might make these redundant, but might as well be safe: */
+  user-drag: none;
+  -webkit-user-drag: none;
+  margin-bottom: 1rem;
+}
+
+#canvas img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    
+    /* Turn off antialiasing for nice pixel art. */
+    /* TODO Make this configurable? */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+#hovertext {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1;
+    /* Normally I would leave styling to user, but in this case I think an unstyled default would simply be unusable on a variety of backgrounds.*/
+    background-color: black;
+    color: white;
+    padding-top: 0.05rem;
+    padding-bottom: 0.05rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-radius:0.2rem;
+    color: white;
+}
+
+/* screenreader-only class (visible to screenreaders but not visual users),
+as recommended here:
+https://webaim.org/techniques/css/invisiblecontent/#techniques
+*/
+/*
+.sr-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}*/
+
+.sr-only { 
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute !important;
+    height: 1px; 
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+    clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
+    clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
+    white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+}
+
+body {
+  /* Controversial choice maybe, but of course the user can change it.*/
+  max-width: 500px;
+}

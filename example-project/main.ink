@@ -1,4 +1,3 @@
-// The "vanilla ink" version of a simple demo scene for the tutorial.
 # TITLE: Simple Poink Game
 # IM_PREFIX: images/
 # CANVAS_SHAPE: 96 64
@@ -19,7 +18,7 @@ VAR player_is_cold = true
 # SCENE: forest.background.gif
 # {not got_firewood: IM_SHOW: forest.woodpile.gif }
 # {fire_lit: IM_SHOW: forest.smoke.smoking.gif }
-You are stranded deep in the heart of a remote forest.
+You are stranded deep in the heart of a remote forest. #{|TEXTMODE}
 + [0,1,56,48 dark forest]
     Towering pines obscure the night sky.
     {player_is_cold:
@@ -55,12 +54,12 @@ You are stranded deep in the heart of a remote forest.
 === interior ===
 # CLEAR
 # SCENE: interior.background.gif
-You {|once again }find yourself inside {a|the} small cabin.{  It seems like it hasn't been inhabited in quite some time.|}
+You {|once again }find yourself inside {a|the} small cabin.{  It seems like it hasn't been inhabited in quite some time.|} # TEXTMODE
 {fire_lit:
     # IM_SHOW: interior.fireplace.burning.gif
-    A fire crackles in the fireplace.
+    A fire crackles in the fireplace. # TEXTMODE
 - else:
-    The fireplace is cold and dark.
+    The fireplace is cold and dark. # TEXTMODE
 }
 + [73,28,96,48 fireplace]
   {not fire_lit:

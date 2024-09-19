@@ -9,6 +9,7 @@ all: html
 html: html/images html/audio html/story.js
 
 html/story.js:
+	# Compile ink file with inklecate and convert to story.js
 	inklecate -o story.json.temp main.ink
 	echo "var storyContent = " > html/story.js
 	cat story.json.temp >> html/story.js
@@ -36,4 +37,3 @@ clean:
 	-rm -rf html/audio/*
 	-rm -rf html/story.js
 	-rm *.temp
-
