@@ -4,11 +4,11 @@ Poink-and-Clink ("Poink" for short) is a drop-in replacement for the default web
 
 ## Documentation
 
-Check out the [quickstart tutorial](averyhiebert.github.io/poink-and-clink/tutorial) or [read the full documentation here](averyhiebert.github.io/poink-and-clink).
+Check out the [quickstart tutorial](https://averyhiebert.github.io/poink-and-clink/tutorial) or [read the full documentation here](https://averyhiebert.github.io/poink-and-clink).
 
 ## What's Possible / Demo Game
 
-The quickstart tutorial walks through the steps of creating a small demo game, which can be [played here](averyhiebert.github.io/poink-and-clink/media/demo).
+The quickstart tutorial walks through the steps of creating a small demo game, which can be [played here](https://averyhiebert.github.io/poink-and-clink/media/demo).
 
 For a more substantial example (around 30 min. playtime), my game [The Restricted Archive](https://averyhiebert.itch.io/the-restricted-archive) was made in an early version of this engine.  I don't really want to release the code, since there are some pretty noticeable differences between the versions and I don't want to cause confusion, but it's still essentially an accurate depiction of what's possible in Poink (albeit lacking screenreader support, and featuring an alternate fullscreen layout).
 
