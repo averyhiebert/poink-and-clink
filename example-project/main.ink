@@ -20,7 +20,7 @@ VAR player_is_cold = true
 # {not got_firewood: IM_SHOW: forest.woodpile.gif }
 # {fire_lit: IM_SHOW: forest.smoke.smoking.gif }
 You are stranded deep in the heart of a remote forest.
-+ [dark forest]
++ [0,1,56,48 dark forest]
     Towering pines obscure the night sky.
     {player_is_cold:
         You know the way home, but the trek will take hours and you are currently extremely cold and damp, on the verge of hypothermia.
@@ -40,11 +40,11 @@ You are stranded deep in the heart of a remote forest.
                 # RESTART
                 -> DONE
     }
-+ {not got_firewood}[pile of firewood]
++ {not got_firewood}[57,42,69,48 pile of firewood]
     You find some firewood lying near the cabin.
     ~got_firewood = true
     -> OK -> exterior
-+ [log cabin]
++ [73,9,96,48 log cabin]
     There is an abandoned log cabin nearby.
     ++ [Enter the cabin]
         -> interior
@@ -62,7 +62,7 @@ You {|once again }find yourself inside {a|the} small cabin.{  It seems like it h
 - else:
     The fireplace is cold and dark.
 }
-+ [fireplace]
++ [73,28,96,48 fireplace]
   {not fire_lit:
     The fireplace is unlit.
     {got_firewood:
@@ -81,8 +81,8 @@ You {|once again }find yourself inside {a|the} small cabin.{  It seems like it h
     ~player_is_cold = false
     -> OK -> interior
   }
-+ [window]
++ [31,9,61,32 window]
     It looks cold out there.
     -> OK -> interior
-+ [door]
++ [2,9,27,48 door]
     -> exterior

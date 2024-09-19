@@ -193,9 +193,50 @@ If you export the project again now, you should find that the graphics all respo
 
 ## Clicking on the image
 
-TODO finish this
+So far we have an illustrated text adventure, but still no pointing or clicking. Let's fix that.
+
+We can convert a text link into a clickable area of the image by adding coordinates defining a rectangle to the choice text, as follows:
+
+```
+You are stranded deep in the heart of a remote forest.
++ [0,1,56,48 dark forest]
+    ...
++ {not got_firewood}[57,42,69,48 pile of firewood]
+    ...
++ [73,9,96,48 log cabin]
+
+...
+
++ [73,28,96,48 fireplace]
+    ...
++ [31,9,61,32 window]
+    ...
++ [2,9,27,48 door]
+    ...
+```
+
+The text after the coordinates will appear as hover text when the user hovers over the corresponding area of the image.
+
+If you build the template now, you should now find that we have a basically fully-functional point & click game.
+
+Coordinates are of the form (top-left x, top-left y, bottom-right x, bottom-right y).  Now, it may seem annoying to have to look up these coordinates manually, and it is; fortunately, if you use Aseprite then there's a script to do this automatically! See here for more details.  TODO WRITE THE PAGE AND LINK TO IT!
 
 ## Hiding text
+
+Our game has graphics now, but it still has textual room descriptions ("You find yourself in the cabin," etc), which is unusual for a point & click game.  We could, of course, delete those descriptions and let the images do the talking, but this would make prototyping/testing in Inky more annoying, not to mention hiding important information from screenreader users.
+
+Instead, you can just add the `TEXTMODE` tag to any lines that you don't want to appear when playing the game, like so:
+```
+You {|once again }find yourself inside {a|the} small cabin.{  It seems like it hasn't been inhabited in quite some time.|} # TEXTMODE
+{fire_lit:
+    # IM_SHOW: interior.fireplace.burning.gif
+    A fire crackles in the fireplace. # TEXTMODE
+- else:
+    The fireplace is cold and dark. # TEXTMODE
+}
+```
+
+We could add it to the room description in the exterior scene too, although in
 
 TODO finish this
 
