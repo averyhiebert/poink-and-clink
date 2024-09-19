@@ -14,11 +14,14 @@ example:
 	cd example-project && make
 	cd ..
 
-.PHONY: clean example
+.PHONY: clean example dist
 
 docs: example docs-src
 	cp -r example-project/html docs-src/media/demo
 	mkdocs build
+
+dist:
+	zip -r dist/web-template.zip web-template/*
 
 clean:
 	# Remove data from web template (I leave story.js 'cause I'm lazy)
@@ -27,7 +30,8 @@ clean:
 	cd example-project && make clean
 	cd ..
 	rm -rf example-project/html
-	rm -r docs
+	rm -r docs/*
 	rm -r docs-src/media/demo
+	rm -r dist/*
 
 

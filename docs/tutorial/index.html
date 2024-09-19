@@ -195,7 +195,7 @@ You {|once again }find yourself inside {a|the} small cabin.{  It seems like it h
 <p>This is a perfectly functional (if somewhat boring) text adventure game.  The player is able to navigate between two scenes (interior and exterior), get some firewood, light a fire, warm themselves by the fire, and then walk home.</p>
 <p>We'll be adding graphics in a moment. For now, though, we can build the text-only version using the Poink template, in essentially the same way that you would export the story normally in Inky.</p>
 <ol>
-<li>Download the Poink <code>web-template</code> directory.</li>
+<li>Download the Poink <code>web-template</code> directory (from <a href="https://github.com/averyhiebert/poink-and-clink/">the github repo</a>).</li>
 <li>Open Inky and copy-paste in the contents of <code>main.ink</code></li>
 <li>Select <code>File &gt; Export story.js only...</code> and overwrite the story.js currently present in the web template.</li>
 </ol>
@@ -286,7 +286,7 @@ You {|once again }find yourself inside {a|the} small cabin.{  It seems like it h
 </code></pre>
 <p>The text after the coordinates will appear as hover text when the user hovers over the corresponding area of the image, and clicking on that area will select that choice.</p>
 <p>If you build the template now, you should find that we have a basically fully-functional point &amp; click game.</p>
-<p>Coordinates are of the form (top-left x, top-left y, bottom-right x, bottom-right y).  Now, it may seem annoying to have to look up these coordinates manually, and it is; fortunately, if you use Aseprite then there's a script to do this automatically! See here for more details.  TODO WRITE THE PAGE AND LINK TO IT!</p>
+<p>Coordinates are of the form (top-left x, top-left y, bottom-right x, bottom-right y).  Now, it may seem annoying to look up these coordinates manually, and it is; fortunately, if you use Aseprite then there's a script to do this automatically. Documentation for the Aseprite script should be available soon.</p>
 <h2 id="hiding-text">Hiding text</h2>
 <p>Our game has graphics now, but it still has textual room descriptions ("You find yourself in the cabin," etc), which is unusual for a point &amp; click game.  We could, of course, delete those descriptions and let the images (and clickable scenery descriptions) do the talking, but this would make prototyping/testing in Inky less pleasant, not to mention hiding important information from screenreader users.</p>
 <p>Instead, you can just add the <code>TEXTMODE</code> tag to any lines that you don't want to appear when playing the game, like so:</p>

@@ -1,6 +1,6 @@
 # Poink-and-Clink: A Point & Click Framework for Ink 
 
-Poink-and-Clink ("Poink" for short) is a drop-in replacement for the default web export functionality of [Ink](https://www.inklestudios.com/ink/), adding simple point & click game functionality.
+Poink-and-Clink ("Poink" for short) is a drop-in replacement for the default web export functionality of [Ink](https://www.inklestudios.com/ink/), adding simple point & click game functionality.  You can find the [github repo here](https://github.com/averyhiebert/poink-and-clink).
 
 The goal is to make it easy to upgrade a "text-adventure"-like Ink story by adding the ability to selectively display layers of an image (including animations) and select choices by clicking on the image; in other words, a minimal set of functionality for writing a point & click adventure in Ink.  And if you do your art in [Aseprite](https://www.aseprite.org/), there's an export script to streamline the workflow further.
 
