@@ -16,7 +16,6 @@ For a more substantial example (around 30 min. playtime), my game [The Restricte
 ## Roadmap
 
 Things I hope to add eventually, in approximate order of priority:
- - check whether the Aseprite script even works on Windows?? (fix if necessary)
  - documentation for the Aseprite script
  - fullscreen CSS option
  - template repo to start projects quickly (with Makefile for easy build + better Aseprite export workflow)

@@ -52,12 +52,6 @@ local function resetVisibility(layers,settings)
   end
 end
 
--- TODO Replace with builtin functions, for OS independence
-function dirFromFile(file)
-    a,b = string.find(file,".*/")
-    return string.sub(file,a,b)
-end
-
 -- export a gif of the given layer and tag
 local function exportLayerTag(image_dir, scene, layer, tag)
     local filename = scene .. "." .. layer.name .. "." .. tag.name .. ".gif"

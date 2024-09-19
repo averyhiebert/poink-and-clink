@@ -3,6 +3,8 @@
 # Dependencies:
 #  aseprite (must be in path)
 #  inklecate (not used YET) (must be in path)
+#
+# Sorry, this makefile is kinda broken & you probably have to clean before doing anything.
 
 
 # Make the example project.
