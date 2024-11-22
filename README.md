@@ -16,6 +16,7 @@ For a more substantial example (around 30 min. playtime), my game [The Restricte
 ## Roadmap
 
 Things I hope to add eventually, in approximate order of priority:
+ - better support for custom CSS
  - documentation for the Aseprite script
  - fullscreen CSS option
  - template repo to start projects quickly (with Makefile for easy build + better Aseprite export workflow)
@@ -27,5 +28,4 @@ Things I hope to add eventually, in approximate order of priority:
         - only an issue when there is no visible text on screen
         - solution for now: don't rely on TEXTMODE for screenreader support.
  - better error checking / more informative error messages wrt tags
- - better support for custom CSS
  - better support for custom JS without editing main.js
