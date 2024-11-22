@@ -99,7 +99,7 @@ This is a perfectly functional (if somewhat boring) text adventure game.  The pl
 We'll be adding graphics in a moment. For now, though, we can build the text-only version using the Poink template, in essentially the same way that you would export the story normally in Inky.
 
 1. Download the Poink `web-template` directory (from [the github repo](https://github.com/averyhiebert/poink-and-clink/releases)).
-2. Open Inky and copy-paste in the contents of `main.ink`
+2. Open Inky and replace the contents of `main.ink` with the example program shown above.
 3. Select `File > Export story.js only...` and overwrite the story.js currently present in the web template.
 
 That's it! If you view `index.html` in a browser you should be able to play the game.
