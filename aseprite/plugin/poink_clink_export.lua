@@ -1,3 +1,4 @@
+-- TODO: make it work as both a standalone script and a module.
 --[[
 Export images and slice coordinate data for Poink-and-Clink game template.
 
@@ -26,13 +27,6 @@ A slice named "example" spanning from 0,0 to 10,10 with metadata "hovertext" wil
 VAR C_example = "0,0,10,10 hovertext"
 
 ]]--
-
-local SKIP_UI = false
-if app.params["SKIP_UI"] == "1" then
-    -- Lets us skip showing UI elements (would otherwise crash in batch mode)
-    -- To use, run aseprite with --script-param SKIP_UI
-    SKIP_UI = true
-end
 
 local sprite = app.activeSprite
 
@@ -103,16 +97,14 @@ end
 local function main()
     -- Confirmation dialog 
 
-    if not SKIP_UI then
-        local dialog = Dialog()
-        dialog:label{ id="label", text="Export poink-and-clink data?" }
-        dialog:button{ id="ok", text="Export" }
-        dialog:button{ id="cancel", text="Cancel", onclick = function() dialog:close() end }
-        dialog:show()
+    local dialog = Dialog()
+    dialog:label{ id="label", text="Export poink-and-clink data?" }
+    dialog:button{ id="ok", text="Export" }
+    dialog:button{ id="cancel", text="Cancel", onclick = function() dialog:close() end }
+    dialog:show()
 
-        if not dialog.data.ok then
-            return
-        end
+    if not dialog.data.ok then
+        return
     end
     
     -- Export details:
@@ -144,9 +136,8 @@ local function main()
     local ink_filename = app.fs.joinPath(ink_dir,scene_title .. ".ink")
     exportInkData(ink_filename)
 
-    if not SKIP_UI then
-        print("Export completed")
-    end
+    print("Export completed")
 end
 
-main()
+-- main()
+return main

@@ -26,7 +26,8 @@ html/images: $(ASE_EXPORT)
 
 # Note: I'm using the exported ink as the target, since the filename of exported images will vary depending on layers etc., but just to be clear, this step builds the exported images as well as the exported ink files.
 aseprite-export/ink/%.ink: %.ase
-	aseprite $^ -b --script-param SKIP_UI --script ../aseprite-script/poink_clink_export.lua
+	# aseprite $^ -b --script-param SKIP_UI --script ../aseprite/plugin/poink_clink_export.lua
+	aseprite $^ -b --script-param SKIP_UI --script ../aseprite/plugin/poink_clink_export.standalone.lua
 	touch $@
 
 .PHONY: clean all

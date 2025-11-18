@@ -6,6 +6,7 @@
 #
 # Sorry, this makefile is kinda broken & you probably have to clean before doing anything.
 
+.PHONY: clean example dist plugin
 
 # Make the example project.
 example:
@@ -16,14 +17,15 @@ example:
 	cd example-project && make
 	cd ..
 
-.PHONY: clean example dist
-
 docs: example docs-src
 	cp -r example-project/html docs-src/media/demo
 	mkdocs build
 
 dist:
 	zip -r dist/web-template.zip web-template/*
+
+plugin:
+	zip -r dist/plugin.zip aseprite/plugin/*
 
 clean:
 	# Remove data from web template (I leave story.js 'cause I'm lazy)
