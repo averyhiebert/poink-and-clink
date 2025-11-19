@@ -1,5 +1,6 @@
 -- Note: Aseprite API only works wtih dofile, not require
 local project_export = dofile("project_export.lua")
+local new_project = dofile("new_project.lua")
 
 function init(plugin)
   -- print("Initializing plugin.")
@@ -16,13 +17,27 @@ function init(plugin)
   -- Export is okay for now.
   plugin:newMenuGroup{
     id="poink_group",
-    title="Poink Export",
-    group="file_export"
+    title="Poink-and-Clink",
+    --group="file_export"
+    group="file_app"
+  }
+
+  plugin:newCommand{
+    id="PoinkNewProject",
+    title="New Project",
+    group="poink_group",
+    onclick=function()
+        new_project(plugin)
+    end
+  }
+
+  plugin:newMenuSeparator{
+    group="poink_group"
   }
 
   plugin:newCommand{
     id="PoinkProjectExport",
-    title="Export Project",
+    title="Export for Web",
     group="poink_group",
     onclick=function()
       project_export(plugin)
@@ -36,9 +51,6 @@ function init(plugin)
   ]]
 
   -- Project & Plugin Settings -------------------------------------------
-  plugin:newMenuSeparator{
-    group="poink_group"
-  }
 
   plugin:newCommand{
     id="PoinkProjectSettings",
@@ -48,10 +60,14 @@ function init(plugin)
       print("Not yet implemented.")
     end
   }
+
+  plugin:newMenuSeparator{
+    group="poink_group"
+  }
   
   plugin:newCommand{
     id="PoinkPluginSettings",
-    title="Global Plugin Settings",
+    title="Global Poink Settings",
     group="poink_group",
     onclick=function()
       print("Not yet implemented.")

@@ -28,7 +28,8 @@ VAR C_example = "0,0,10,10 hovertext"
 
 ]]--
 
-local sprite = app.activeSprite
+--local sprite = app.activeSprite
+local sprite = nil
 
 -- hide all listed layers, including children recursively
 local function hideAllLayers(layers)
@@ -132,6 +133,7 @@ local function copy_dir(src, dest)
 end
 
 local function main(plugin)
+    sprite = app.activeSprite
     -- Confirmation dialog 
 
     local dialog = Dialog()
