@@ -35,7 +35,7 @@ function init(plugin)
     title="Export Project",
     group="poink_export_group",
     onclick=function()
-        project_export(plugin)
+      project_export(plugin)
     end
   }
   --[[
@@ -51,7 +51,7 @@ function init(plugin)
   }
 
   plugin:newCommand{
-    id="PoinkPluginSettings",
+    id="PoinkProjectSettings",
     title="Project Settings",
     group="poink_export_group",
     onclick=function()

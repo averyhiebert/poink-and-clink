@@ -159,6 +159,7 @@ local function main(plugin)
     end
 
     -- Export ink
+    -- TODO: Get bounding box from each layer, rather than slices.
     local ink_filename = app.fs.joinPath(file_dir,"EXPORT.ink")
     exportInkData(ink_filename)
 
