@@ -1,5 +1,6 @@
 -- Note: Aseprite API only works wtih dofile, not require
 local poink_export = dofile("poink_clink_export.lua")
+local project_export = dofile("project_export.lua")
 
 function init(plugin)
   -- print("Initializing plugin.")
@@ -34,7 +35,7 @@ function init(plugin)
     title="Export Project",
     group="poink_export_group",
     onclick=function()
-      print("Not yet implemented.")
+        project_export(plugin)
     end
   }
   --[[
