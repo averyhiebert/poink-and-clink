@@ -11,11 +11,10 @@ New projects should consist of:
 ]]
 
 local function new_project(plugin)
-    local dialog = Dialog()
-    dialog:label{ id="label", text="New Project" }
+    local dialog = Dialog{title="New Poink Project"}
     dialog:entry{
         id="title",
-        label="Project title",
+        label="Project Name",
         text="my-project"
     }
     dialog:newrow{always=false}
