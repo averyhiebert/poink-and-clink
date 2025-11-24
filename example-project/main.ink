@@ -15,9 +15,9 @@ VAR player_is_cold = true
 
 === exterior ===
 # CLEAR
-# SCENE: forest.background.gif
-# {not got_firewood: IM_SHOW: forest.woodpile.gif }
-# {fire_lit: IM_SHOW: forest.smoke.smoking.gif }
+# SCENE: exterior_bg.gif
+# {not got_firewood: IM_SHOW: woodpile.gif }
+# {fire_lit: IM_SHOW: smoke.smoking.gif }
 You are stranded deep in the heart of a remote forest. #{|TEXTMODE}
 + [0,1,56,48 dark forest]
     Towering pines obscure the night sky.
@@ -53,10 +53,10 @@ You are stranded deep in the heart of a remote forest. #{|TEXTMODE}
 
 === interior ===
 # CLEAR
-# SCENE: interior.background.gif
+# SCENE: interior_bg.gif
 You {|once again }find yourself inside {a|the} small cabin.{  It seems like it hasn't been inhabited in quite some time.|} # TEXTMODE
 {fire_lit:
-    # IM_SHOW: interior.fireplace.burning.gif
+    # IM_SHOW: fire.burning.gif
     A fire crackles in the fireplace. # TEXTMODE
 - else:
     The fireplace is cold and dark. # TEXTMODE

@@ -40,7 +40,16 @@ function init(plugin)
     title="Export for Web",
     group="poink_group",
     onclick=function()
-      project_export(plugin)
+      project_export(plugin.path)
+    end
+  }
+
+  plugin:newCommand{
+    id="PoinkProjectDataExport",
+    title="Export images & ink only",
+    group="poink_group",
+    onclick=function()
+      project_export(plugin.path, true)
     end
   }
   --[[

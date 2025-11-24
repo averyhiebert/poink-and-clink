@@ -1,8 +1,6 @@
 # Dependencies:
-#  inklecate must be added to your path (v1.1.1 or earlier)
+#  inklecate must be added to your path (v1.1.1 or later)
 #  aseprite must be added to your path
-ASE := $(wildcard *.ase)
-ASE_EXPORT := $(patsubst %.ase,aseprite-export/ink/%.ink,${ASE})
 
 all: html
 
@@ -21,16 +19,10 @@ html/story.js:
 html/audio:
 	cp -r audio/* html/audio
 
-html/images: $(ASE_EXPORT)
-	cp -r aseprite-export/images/* html/images
+html/images:
+	aseprite scene.ase -b --script ../aseprite/plugin/cli_export.lua
 
-# Note: I'm using the exported ink as the target, since the filename of exported images will vary depending on layers etc., but just to be clear, this step builds the exported images as well as the exported ink files.
-aseprite-export/ink/%.ink: %.ase
-	# aseprite $^ -b --script-param SKIP_UI --script ../aseprite/plugin/poink_clink_export.lua
-	aseprite $^ -b --script-param SKIP_UI --script ../aseprite/plugin/poink_clink_export.standalone.lua
-	touch $@
-
-.PHONY: clean all
+.PHONY: clean all html/images
 
 clean:
 	-rm -rf aseprite-export

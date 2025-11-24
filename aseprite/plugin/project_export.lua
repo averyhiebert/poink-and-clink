@@ -45,7 +45,6 @@ local function showLayer(layer, recursive)
     layer.isVisible = true
     if layer.isGroup and recursive then
         for i, l in ipairs(layer.layers) do
-            print("showing layer " .. layer.name)
             showLayer(l,true)
         end
     end
@@ -138,28 +137,41 @@ local function copy_dir(src, dest)
     end
 end
 
-local function main(plugin)
+local function main(plugin_path,data_only)
     sprite = app.activeSprite
-    -- Confirmation dialog 
+    data_only = data_only or false
 
-    local dialog = Dialog()
-    dialog:label{ id="label", text="Export poink-and-clink project?" }
-    dialog:button{ id="ok", text="Export" }
-    dialog:button{ id="cancel", text="Cancel", onclick = function() dialog:close() end }
-    dialog:show()
+    if app.isUIAvailable then
+        -- Confirmation dialog 
+        local dialog = Dialog()
+        if data_only then
+            dialog:label{ id="label", text="Export images and ink data?" }
+        else
+            dialog:label{ id="label",
+                text="Export poink-and-clink project for web?" }
+            dialog:newrow()
+            dialog:label{ id="label",
+                text="This will overwrite the html directory!" }
+        end
+        dialog:button{ id="ok", text="Export" }
+        dialog:button{ id="cancel", text="Cancel", onclick = function() dialog:close() end }
+        dialog:show()
 
-    if not dialog.data.ok then
-        return
+        if not dialog.data.ok then
+            return
+        end
     end
     
     -- directory where the export "html" directory will go
     -- (currently just the directory where .ase file is located)
     local file_dir = app.fs.filePath(sprite.filename)
+    local export_dir = app.fs.joinPath(file_dir,"html")
    
     -- Copy the web template to destination folder
-    local copy_from = app.fs.joinPath(plugin.path,"web-template")
-    local export_dir = app.fs.joinPath(file_dir,"html")
-    copy_dir(copy_from, export_dir)
+    if not data_only then
+        local copy_from = app.fs.joinPath(plugin_path,"web-template")
+        copy_dir(copy_from, export_dir)
+    end
     
     -- Export details:
     --  create "aseprite-export" dir in same directory as .aseprite file
